@@ -1,0 +1,1 @@
+SELECT ?canonicalForm WHERE { <$uri> <http://www.monnet-project.eu/lemon#canonicalForm> ?form . ?form <http://www.monnet-project.eu/lemon#writtenRep> ?canonicalForm . }

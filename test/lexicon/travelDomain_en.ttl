@@ -1,0 +1,423 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix lemon: <http://www.monnet-project.eu/lemon#>.
+@prefix lexinfo: <http://www.lexinfo.net/ontology/2.0/lexinfo#>.
+@prefix isocat: <http://www.isocat.org/datcat/> .
+
+@prefix base: <http://sc.cit-ec.uni-bielefeld.de/lexica/travelDomain_en#>.
+@prefix : <http://sc.cit-ec.uni-bielefeld.de/lexica/travelDomain_en#>.
+
+:lexicon a lemon:Lexicon ;
+    lemon:language "en" ;
+    lemon:entry :airline ;
+    lemon:entry :airport ;
+    lemon:entry :airportservice;
+    lemon:entry :arrival;
+    lemon:entry :car;
+    lemon:entry :cartype;
+    lemon:entry :typeofcar;
+    lemon:entry :kindofcar;
+    lemon:entry :plane;
+    lemon:entry :airplane;
+    lemon:entry :city;
+    lemon:entry :state;
+    lemon:entry :country;
+    lemon:entry :flight;
+    lemon:entry :leg;
+    lemon:entry :firstleg;
+    lemon:entry :secondleg;
+    lemon:entry :thirdleg;
+    lemon:entry :arrival;
+    lemon:entry :departure;
+    lemon:entry :hotel;
+    lemon:entry :meal;
+    lemon:entry :stay;
+    lemon:entry :firststay;
+    lemon:entry :secondstay;
+    lemon:entry :rental;
+    lemon:entry :firstrental;
+    lemon:entry :secondrental;
+    lemon:entry :trip;
+    lemon:entry :stopover;
+    lemon:entry :operate;
+    lemon:entry :leg_of;
+    lemon:entry :arrive_in;
+    lemon:entry :stay_in;
+    lemon:entry :a_stay_in;
+    lemon:entry :stop_in;
+    lemon:entry :to_stop_in;
+    lemon:entry :fly_from_to;
+    lemon:entry :travel_from_to;
+    lemon:entry :test .
+
+
+:airline a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "airline"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#AirLine> ] .
+
+:airport a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "airport"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Airport> ] .
+
+:airportservice a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "airport service"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#AirportService> ] .
+
+:arrival a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "arrival"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Arrival> ] .
+
+:car a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "car"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Car> ] .
+
+:cartype a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "car type"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#CarType> ] .
+
+:typeofcar a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "type of car"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#CarType> ] .
+
+:kindofcar a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "kind of car"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#CarType> ] .
+
+:plane a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "plane"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Plane> ] .
+
+:airplane a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "airplane"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Plane> ] .
+
+:city a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "city"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#City> ] .
+
+:state a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "state"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#State> ] .
+
+:country a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "country"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Country> ] .
+
+:flight a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "flight"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Flight> ] .
+
+:leg a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "leg"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Leg> ] .
+
+:firstleg a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "first leg"@en ] ;
+  lemon:synBehavior [ lemon:tree [ lemon:edge [ lemon:leaf :first ] ;
+                                   lemon:edge [ lemon:leaf :leg ] ] ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Leg1> ] .
+
+:secondleg a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "second leg"@en ] ;
+  lemon:synBehavior [ lemon:tree [ lemon:edge [ lemon:leaf :second ] ;
+                                   lemon:edge [ lemon:leaf :leg ] ] ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Leg2> ] .
+
+:thirdleg a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "third leg"@en ] ;
+  lemon:synBehavior [ lemon:tree [ lemon:edge [ lemon:leaf :third ] ;
+                                   lemon:edge [ lemon:leaf :leg ] ] ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Leg3> ] .
+
+:arrival a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "arrival"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Arrival> ] .
+
+:departure a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "departure"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Departure> ] .
+
+:hotel a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "hotel"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Hotel> ] .
+
+:meal a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "meal"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Meal> ] .
+
+:stay a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "stay"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Stay> ] .
+
+:firststay a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "first stay"@en ] ;
+  lemon:synBehavior [ lemon:tree [ lemon:edge [ lemon:leaf :first ] ;
+                                   lemon:edge [ lemon:leaf :stay ] ] ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Stay1> ] .
+
+:secondstay a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "second stay"@en ] ;
+  lemon:synBehavior [ lemon:tree [ lemon:edge [ lemon:leaf :second ] ;
+                                   lemon:edge [ lemon:leaf :stay ] ] ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Stay2> ] .
+
+:rental a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "rental"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Rental> ] .
+
+:firstrental a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "first rental"@en ] ;
+  lemon:synBehavior [ lemon:tree [ lemon:edge [ lemon:leaf :first ] ;
+                                   lemon:edge [ lemon:leaf :rental ] ] ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Rental1> ] .
+
+:secondrental a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "second rental"@en ] ;
+  lemon:synBehavior [ lemon:tree [ lemon:edge [ lemon:leaf :second ] ;
+                                   lemon:edge [ lemon:leaf :rental ] ] ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Rental2> ] .
+
+:stopover a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333  ;
+  lemon:canonicalForm [ lemon:writtenRep "stopover"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#StopOver> ] .
+
+:trip a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "trip"@en ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Trip> ] .
+
+:trip_to a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333  ;
+  lemon:canonicalForm [ lemon:writtenRep "trip"@en ] ;
+  lemon:synBehavior [ rdf:type lexinfo:NounPPFrame ; 
+                      isocat:DC-2261 :arg_trip ;
+                      isocat:DC-4638 :arg_destination ] ;
+  lemon:sense [ lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Trip> ; 
+                                 lemon:isA :arg_trip ] ,
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flight>; 
+                                 lemon:subjOfProp :arg_trip;
+                                 lemon:objOfProp  :arg_flight ] , 
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#leg>; 
+                                 lemon:subjOfProp :arg_flight;
+                                 lemon:objOfProp  :arg_leg ] , 
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightArrival>; 
+                                 lemon:subjOfProp :arg_leg;
+                                 lemon:objOfProp  :arg_arrival ] ,
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>; 
+                                 lemon:subjOfProp :arg_arrival;
+                                 lemon:objOfProp  :arg_destination ]  
+              ] .
+
+:leg_of a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333 ;
+  lemon:canonicalForm [ lemon:writtenRep "leg"@en ] ;
+  lemon:synBehavior [ rdf:type NounPPFrame ;
+                      isocat:DC-2261 :arg_legof ;
+                      isocat:DC-4638 :arg_legflight ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#leg> ;
+                lemon:subjOfProp :arg_legflight;
+                lemon:objOfProp  :arg_legof ] .
+
+:arg_legflight lemon:marker [ lemon:canonicalForm [ lemon:writtenRep "of"@en ] ] .
+
+
+:flight_to_from a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333  ;
+  lemon:canonicalForm [ lemon:writtenRep "flight"@en ] ;
+  lemon:synBehavior [ rdf:type lexinfo:NounPPFrame ; 
+                      isocat:DC-2261 :arg_flight ;
+                      isocat:DC-4638 :arg_destination ;
+                      isocat:DC-4638 :arg_source ] ;
+  lemon:sense [ lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Flight> ; 
+                                 lemon:isA :arg_flight ] , 
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightdeparture>; 
+                                 lemon:subjOfProp :arg_flight;
+                                 lemon:objOfProp  :arg_departure ] , 
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>; 
+                                 lemon:subjOfProp :arg_departure;
+                                 lemon:objOfProp  :arg_destination ] , 
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#leg>; 
+                                 lemon:subjOfProp :arg_flight;
+                                 lemon:objOfProp  :arg_leg ] , 
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightArrival>; 
+                                 lemon:subjOfProp :arg_leg;
+                                 lemon:objOfProp  :arg_arrival ] ,
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>; 
+                                 lemon:subjOfProp :arg_arrival;
+                                 lemon:objOfProp  :arg_destination ]  
+              ] .
+
+
+
+
+:operate a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1424 ;
+  lemon:canonicalForm [ lemon:writtenRep "operate"@en ] ;
+  lemon:synBehavior [ rdf:type lexinfo:TransitiveFrame ; 
+                      isocat:DC-2261 :arg_operator ;
+                      isocat:DC-2263 :arg_operated ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#airline>; 
+                lemon:subjOfProp :arg_operated;
+                lemon:objOfProp  :arg_operator ] ,
+              [ lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#airline>; 
+                                 lemon:subjOfProp :arg_leg;
+                                 lemon:objOfProp  :arg_operator ] , 
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#leg>; 
+                                 lemon:subjOfProp :arg_operated;
+                                 lemon:objOfProp  :arg_leg ] ] .
+
+:arrive_in a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1424 ;
+  lemon:canonicalForm [ lemon:writtenRep "arrive"@en ] ;
+  lemon:synBehavior [ rdf:type lexinfo:IntransitivePPFrame ; 
+                      isocat:DC-2261 :arg_leg ;
+                      isocat:DC-4638 :arg_city ] ;
+  lemon:sense [ lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightArrival>;
+                                 lemon:subjOfProp :arg_leg ;
+                                 lemon:objOfProp  :arg_arrival ] ,
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>;
+                                 lemon:subjOfProp :arg_arrival ;
+                                 lemon:objOfProp  :arg_city ] ] . 
+
+:stop_in a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1424 ;
+  lemon:canonicalForm [ lemon:writtenRep "stop"@en ] ;
+  lemon:synBehavior [ rdf:type lexinfo:IntransitivePPFrame ; 
+                      isocat:DC-2261 :arg_flight ;
+                      isocat:DC-4638 :arg_city ] ;
+  lemon:sense [ lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#leg>;
+                                 lemon:subjOfProp :arg_flight ;
+                                 lemon:objOfProp  :arg_leg ] ,
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#stopover>;
+                                 lemon:subjOfProp :arg_leg ;
+                                 lemon:objOfProp  :arg_stopover ] ,
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>;
+                                 lemon:subjOfProp :arg_stopover ;
+                                 lemon:objOfProp  :arg_city ]
+              ] . 
+
+:a_stop_in a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1333  ;
+  lemon:canonicalForm [ lemon:writtenRep "stop"@en ] ;
+  lemon:synBehavior [ rdf:type lexinfo:NounPPFrame ; 
+                      isocat:DC-2261 :arg_stopover ;
+                      isocat:DC-4638 :arg_city ] ;
+  lemon:sense [ lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#StopOver> ;
+                                 lemon:isA :arg_stopover ],
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city> ;
+                                 lemon:subjOfProp :arg_stopover ;
+                                 lemon:objOfProp  :arg_city ] 
+              ] .
+
+:arg_city lemon:marker [ lemon:canonicalForm [ lemon:writtenRep "in"@en ] ] .
+
+
+:fly_from_to a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1424 ;
+  lemon:canonicalForm [ lemon:writtenRep "fly"@en ] ;
+  lemon:synBehavior [ rdf:type lexinfo:IntransitivePPFrame ; 
+                      isocat:DC-2261 :arg_flight ;
+                      isocat:DC-4638 :arg_source ;
+                      isocat:DC-4638 :arg_destination ] ;
+  lemon:sense [ lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#leg>;
+                                 lemon:subjOfProp :arg_flight ;
+                                 lemon:objOfProp  :arg_leg ] ,
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightdeparture>;
+                                 lemon:subjOfProp :arg_leg ;
+                                 lemon:objOfProp  :arg_departure ] ,
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>;
+                                 lemon:subjOfProp :arg_departure ;
+                                 lemon:objOfProp  :arg_source ] ,
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightArrival>;
+                                 lemon:subjOfProp :arg_leg ;
+                                 lemon:objOfProp  :arg_arrival ] ,
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>;
+                                 lemon:subjOfProp :arg_arrival ;
+                                 lemon:objOfProp  :arg_destination ]
+              ] . 
+
+
+:travel_from_to a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1424 ;
+  lemon:canonicalForm [ lemon:writtenRep "travel"@en ] ;
+  lemon:synBehavior [ rdf:type lexinfo:IntransitivePPFrame ; 
+                      isocat:DC-2261 :arg_trip ;
+                      isocat:DC-4638 :arg_source ;
+                      isocat:DC-4638 :arg_destination ] ;
+  lemon:sense [ lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flight>;
+                                 lemon:subjOfProp :arg_trip ;
+                                 lemon:objOfProp  :arg_flight ] ,
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#leg>;
+                                 lemon:subjOfProp :arg_flight ;
+                                 lemon:objOfProp  :arg_leg ] ,
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightdeparture>;
+                                 lemon:subjOfProp :arg_leg ;
+                                 lemon:objOfProp  :arg_departure ] ,
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>;
+                                 lemon:subjOfProp :arg_departure ;
+                                 lemon:objOfProp  :arg_source ] ,
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightArrival>;
+                                 lemon:subjOfProp :arg_leg ;
+                                 lemon:objOfProp  :arg_arrival ] ,
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>;
+                                 lemon:subjOfProp :arg_arrival ;
+                                 lemon:objOfProp  :arg_destination ]
+              ] . 
+
+
+:arg_destination lemon:marker [ lemon:canonicalForm [ lemon:writtenRep "to"@en ] ] ;
+                 lemon:optional "true"^^xsd:boolean .
+:arg_source      lemon:marker [ lemon:canonicalForm [ lemon:writtenRep "from"@en ] ] ;
+                 lemon:optional "true"^^xsd:boolean .
+
+
+:test a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:DC-1424 ;
+  lemon:canonicalForm [ lemon:writtenRep "test"@en ] ;
+  lemon:synBehavior [ rdf:type lexinfo:IntransitiveFrame ; 
+                      isocat:DC-2261 :arg_test ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightArrival>;
+                lemon:subjOfProp :arg_speaker ; 
+                lemon:objOfProp  :arg_test ;
+                lemon:propertyDomain <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Country> ;
+                lemon:propertyRange  <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#City> ] . 
+
+
+
+
+:first isocat:DC-1345 isocat:DC-1230 ;
+       lemon:canonicalForm [ lemon:writtenRep "first"@en ] .
+:second isocat:DC-1345 isocat:DC-1230 ;
+       lemon:canonicalForm [ lemon:writtenRep "second"@en ] .
+:third isocat:DC-1345 isocat:DC-1230 ;
+       lemon:canonicalForm [ lemon:writtenRep "third"@en ] .
+

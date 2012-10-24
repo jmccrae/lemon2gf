@@ -1,0 +1,51 @@
+#import itertools
+##
+#set $pobj = $syn.prepositionalObject
+#set global $ms = []
+##
+#set $required_pobjs = []
+#set $optional_pobjs = []
+#if type($pobj) == list
+ #for $p in $pobj
+ #if $p.has_key('optional') and $p['optional'] == 'true'
+  $optional_pobjs.append($p)
+ #else 
+  $required_pobjs.append($p)
+ #end if
+ #end for
+#else
+ #if $pobj.has_key('optional') and $pobj['optional'] == 'true'
+  $optional_pobjs.append($pobj)
+ #else 
+  $required_pobjs.append($pobj)
+ #end if
+#end if
+##
+#
+#set global $advs = []
+#set $adv = []
+#for $p in $required_pobjs
+ #set $marker = dict(long=$p.marker,short=$p.marker.replace(' ',''))
+ $ms.append($marker)
+ $adv.append( '(Syntax'+str($lang)+'.mkAdv ' + str($marker.short) + '_Prep (mkNP ' + str($p.name) + '))' )
+#end for
+#if $adv
+ $advs.append($adv)
+#end if
+##
+#for $n in range(1,len($optional_pobjs)+1)
+ #for $combination in itertools.combinations($optional_pobjs,$n)
+  #set $combs = itertools.permutations(list($combination))
+  #for $comb in $combs
+   #set $new_adv = $adv[:]
+   #for $c in $comb
+    #set $marker = dict(long=$c.marker,short=$c.marker.replace(' ',''))
+    #if not $marker in $ms
+     $ms.append($marker)
+    #end if
+    $new_adv.append( '(Syntax'+str($lang)+'.mkAdv ' + str($marker.short) + '_Prep (mkNP ' + str($c.name) + '))' )
+   #end for
+   $advs.append($new_adv[:])
+  #end for
+ #end for
+#end for

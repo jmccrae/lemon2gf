@@ -1,0 +1,67 @@
+SELECT ?present ?past ?participle ?gerund WHERE { 
+ ##
+ ## PRESENT
+ ##
+ { <\$uri> <http://www.monnet-project.eu/lemon#canonicalForm> ?form1 . } #slurp
+ UNION #slurp
+ { <\$uri> <http://www.monnet-project.eu/lemon#otherForm> ?form1 . } #slurp
+ ##
+ #set $sep = ''
+ #for $p in $tense
+ #for $ps in $present
+ $sep { ?form1 <$p> <$ps> . } #slurp
+ #set $sep = ' UNION ' 
+ #end for
+ #end for
+ ?form1 <http://www.monnet-project.eu/lemon#writtenRep> ?present . #slurp
+ ##
+ ## PAST
+ ##
+ { <\$uri> <http://www.monnet-project.eu/lemon#canonicalForm> ?form2 . } #slurp
+ UNION #slurp
+ { <\$uri> <http://www.monnet-project.eu/lemon#otherForm> ?form2 . } #slurp
+ ##
+ #set $sep = ''
+ #for $p in $tense
+ #for $ps in $past
+ $sep { ?form2 <$p> <$ps> . } #slurp
+ #set $sep = ' UNION ' 
+ #end for
+ #end for
+ ?form2 <http://www.monnet-project.eu/lemon#writtenRep> ?past . #slurp
+ ##
+ ## PARTICIPLE
+ ## 
+ { <\$uri> <http://www.monnet-project.eu/lemon#canonicalForm> ?form3 . } #slurp
+ UNION #slurp
+ { <\$uri> <http://www.monnet-project.eu/lemon#otherForm> ?form3 . } #slurp
+ ##
+ #set $sep = ''
+ #for $v in $verbFormMood
+ #for $pc in $participle
+ #for $a in $aspect
+ #for $pf in $perfective
+ $sep { ?form3 <$v> <$pc> .  #slurp
+        ?form3 <$a> <$pf> . } #slurp
+ #set $sep = ' UNION ' 
+ #end for
+ #end for
+ #end for
+ #end for
+ ?form3 <http://www.monnet-project.eu/lemon#writtenRep> ?participle . #slurp
+ ##
+ ## GERUND
+ ##
+ { <\$uri> <http://www.monnet-project.eu/lemon#canonicalForm> ?form4 . } #slurp
+ UNION #slurp
+ { <\$uri> <http://www.monnet-project.eu/lemon#otherForm> ?form4 . } #slurp
+ ##
+ #set $sep = ''
+ #for $v in $verbFormMood
+ #for $g in $gerundive
+ $sep { ?form4 <$v> <$g> . } #slurp
+ #set $sep = ' UNION ' 
+ #end for
+ #end for
+ ?form4 <http://www.monnet-project.eu/lemon#writtenRep> ?gerund . #slurp
+}

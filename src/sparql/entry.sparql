@@ -1,0 +1,1 @@
+SELECT ?x WHERE { <$uri> <http://www.monnet-project.eu/lemon#entry> ?x . }

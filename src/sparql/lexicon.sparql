@@ -1,0 +1,1 @@
+SELECT ?x WHERE { ?x a <http://www.monnet-project.eu/lemon#Lexicon> . }

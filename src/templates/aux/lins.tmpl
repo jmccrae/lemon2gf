@@ -1,0 +1,38 @@
+#@staticmethod
+#def get_lins($advs,$mk,$cat,$core)
+##
+#if not $advs
+ #set $out = [$core]
+#else
+ #set $out = []
+ #for $adv in $advs
+  #set $lin = ''
+  #set $l = len($adv)
+  #set $lin = $lin + ('('+$mk+' ') * $l + $core
+  #for $n in range(0,$l)
+   #set $lin = $lin + ' ' + $adv[$n] + ')'
+  #end for
+  $out.append($lin)
+ #end for
+#end if
+##
+#return $out
+##
+#end def
+
+#@staticmethod
+#def build_lins($lins,$prefix)
+##
+#if len($lins) == 1
+ #set $out = $prefix + $lins[0]
+#else if len($lins) > 1
+ #set $out = 'variants {'
+ #for $lin in $lins
+ #set $out = $out + $prefix + $lin + ';'
+ #end for
+ #set $out = $out + '}'
+#end if
+##
+#return $out
+##
+#end def

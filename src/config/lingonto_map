@@ -1,0 +1,26 @@
+pos http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech http://www.isocat.org/datcat/DC-1345
+
+subject             http://www.lexinfo.net/ontology/2.0/lexinfo#subject             http://www.isocat.org/datcat/DC-2261
+directObject        http://www.lexinfo.net/ontology/2.0/lexinfo#directObject        http://www.isocat.org/datcat/DC-2263
+indirectObject      http://www.lexinfo.net/ontology/2.0/lexinfo#indirectObject      http://www.isocat.org/datcat/DC-1310
+prepositionalObject http://www.lexinfo.net/ontology/2.0/lexinfo#prepositionalObject http://www.isocat.org/datcat/DC-4638
+
+number   http://www.lexinfo.net/ontology/2.0/lexinfo#number   http://www.isocat.org/datcat/DC-1298
+singular http://www.lexinfo.net/ontology/2.0/lexinfo#singular http://www.isocat.org/datcat/DC-1387
+plural   http://www.lexinfo.net/ontology/2.0/lexinfo#plural   http://www.isocat.org/datcat/DC-1354
+
+person       http://www.lexinfo.net/ontology/2.0/lexinfo#person        http://www.isocat.org/datcat/DC-1328
+firstPerson  http://www.lexinfo.net/ontology/2.0/lexinfo#firstPerson   http://www.isocat.org/datcat/DC-1288
+secondPerson http://www.lexinfo.net/ontology/2.0/lexinfo#secondPerson  http://www.isocat.org/datcat/DC-1384
+thirdPerson  http://www.lexinfo.net/ontology/2.0/lexinfo#thirdPerson   http://www.isocat.org/datcat/DC-1402
+
+tense   http://www.lexinfo.net/ontology/2.0/lexinfo#tense   http://www.isocat.org/datcat/DC-1286
+present http://www.lexinfo.net/ontology/2.0/lexinfo#present http://www.isocat.org/datcat/DC-1367
+past    http://www.lexinfo.net/ontology/2.0/lexinfo#past    http://www.isocat.org/datcat/DC-1347
+
+verbFormMood http://www.lexinfo.net/ontology/2.0/lexinfo#verbFormMood http://www.isocat.org/datcat/DC-1427
+participle   http://www.lexinfo.net/ontology/2.0/lexinfo#participle   http://www.isocat.org/datcat/DC-1341
+aspect       http://www.lexinfo.net/ontology/2.0/lexinfo#aspect       http://www.isocat.org/datcat/DC-1242
+perfective   http://www.lexinfo.net/ontology/2.0/lexinfo#perfective   http://www.isocat.org/datcat/DC-1352
+gerundive    http://www.lexinfo.net/ontology/2.0/lexinfo#gerundive    http://www.isocat.org/datcat/DC-2243
+

@@ -1,0 +1,6 @@
+noun_pp : CN
+active : Cl
+passive : Cl
+passive_by : Cl
+object_slash : ClSlash
+subject_slash: VP 

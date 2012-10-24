@@ -1,0 +1,32 @@
+SELECT ?singular ?plural WHERE { #slurp
+ ##
+ ## SINGULAR
+ ##
+ { <\$uri> <http://www.monnet-project.eu/lemon#canonicalForm> ?form1 . } #slurp
+ UNION #slurp
+ { <\$uri> <http://www.monnet-project.eu/lemon#otherForm> ?form1 . } #slurp
+ ##
+ #set $sep = ''
+ #for $p in $number
+ #for $sg in $singular
+ $sep { ?form1 <$p> <$sg> . } #slurp
+ #set $sep = ' UNION ' 
+ #end for
+ #end for
+ ?form1 <http://www.monnet-project.eu/lemon#writtenRep> ?singular . #slurp
+ ##
+ ## PLURAL
+ ##
+ { <\$uri> <http://www.monnet-project.eu/lemon#canonicalForm> ?form2 . } #slurp
+ UNION #slurp
+ { <\$uri> <http://www.monnet-project.eu/lemon#otherForm> ?form2 . } #slurp
+ ##
+ #set $sep = ''
+ #for $p in $number
+ #for $pl in $plural
+ $sep { ?form2 <$p> <$pl> . } #slurp
+ #set $sep = ' UNION ' 
+ #end for
+ #end for
+ ?form2 <http://www.monnet-project.eu/lemon#writtenRep> ?plural . #slurp
+}

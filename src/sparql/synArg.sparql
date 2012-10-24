@@ -1,0 +1,1 @@
+SELECT ?marker ?optional WHERE { <$uri> <http://www.monnet-project.eu/lemon#marker> ?m . ?m <http://www.monnet-project.eu/lemon#canonicalForm> ?f . ?f <http://www.monnet-project.eu/lemon#writtenRep> ?marker . OPTIONAL { <$uri> <http://www.monnet-project.eu/lemon#optional> ?optional . } }

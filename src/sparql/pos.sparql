@@ -1,0 +1,1 @@
+SELECT ?pos WHERE {   { <$uri> <http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech> ?pos . }  UNION { <$uri> <http://www.isocat.org/datcat/DC-1345> ?pos . } }

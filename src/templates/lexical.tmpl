@@ -1,0 +1,51 @@
+
+concrete Lexical$name$lang of $name = open Syntax$lang, Paradigms$lang in {
+
+lincat
+   $signature.proposition.name = $signature.proposition.lincat;
+   $signature.entity.name = $signature.entity.lincat;
+
+  #for $pre in $signature.predefined
+   $pre.name = $pre.lincat;
+  #end for
+
+  #for $c in $signature.classes
+   $c.type = $c.lincat ;
+  #end for
+  #for $c in $signature.funclasses
+   $c.type = $c.lincat ;
+  #end for
+
+lin
+
+#for $l in $linearizations
+  $l.ref $l.args = #slurp
+#if $l['isRecord'] 
+{
+#end if
+#for $lin in $l.lin
+#if $l['isRecord']
+       $lin.field = #slurp
+#end if
+#if $len($lin.value) == 1
+$lin.value[0] ; 
+#else
+variants { #slurp
+#for $v in $lin.value
+$v; #slurp
+#end for
+} ;
+#end if
+#end for
+#if $l['isRecord']
+   } ;
+#end if
+
+#end for
+
+oper
+  #for $o in $opers
+   $o
+  #end for
+
+}

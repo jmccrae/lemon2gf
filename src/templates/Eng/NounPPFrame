@@ -1,0 +1,18 @@
+##
+#set $aux = Template(file="templates/aux/lins.tmpl")
+#set $noun_pp_lins = $aux.get_lins($advs,'mkCN','N','(mkCN '+$name+'_N)')
+##
+#set $noun_pp = $aux.build_lins($noun_pp_lins,'')
+##
+
+lin
+  noun_pp = $noun_pp
+
+oper 
+   ${name}_N : N;
+   ${name}_N = mkN $forms;
+
+#for $m in $ms
+   ${m.short}_Prep : Prep;
+   ${m.short}_Prep = mkPrep "$m.long";
+#end for

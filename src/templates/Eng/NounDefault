@@ -1,0 +1,6 @@
+lin
+   mkCN ${name}_N
+
+oper
+   ${name}_N : N; 
+   ${name}_N = mkN $forms;

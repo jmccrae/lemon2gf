@@ -1,0 +1,22 @@
+--# -path=alltenses
+
+concrete $name$lang of $name =
+
+    Lexical$name$lang #slurp
+#if $domainindependent or $applications
+,
+#end if
+
+   #for $g in $domainindependent
+    Clause$g$lang,
+   #end for
+
+   #set $sep = ''
+   #for $a in $applications 
+    $sep$a$lang
+   #set $sep = ', '
+   #end for
+** {
+    flags startcat = Utt;
+}
+

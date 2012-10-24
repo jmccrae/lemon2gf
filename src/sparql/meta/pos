@@ -1,0 +1,7 @@
+SELECT ?pos WHERE { #slurp 
+ #set $sep = ''
+ #for $p in $pos
+ $sep { <\$uri> <$p> ?pos . } #slurp
+ #set $sep = 'UNION' 
+ #end for
+}

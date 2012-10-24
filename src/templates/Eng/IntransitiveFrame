@@ -1,0 +1,7 @@
+lin
+   active = mkCl (mkNP $syn.subject.name) (mkVP ${name}_V) 
+   subject_slash = mkVP ${name}_V 
+
+oper
+   ${name}_V : V;
+   ${name}_V = mkV $forms;

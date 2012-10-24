@@ -1,0 +1,497 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix lemon: <http://www.monnet-project.eu/lemon#>.
+@prefix lexinfo: <http://www.lexinfo.net/ontology/2.0/lexinfo#>.
+
+@prefix : <http://monnetproject.deri.ie/lemonsource/user/httpswwwgooglecomaccountso8ididAItOawnRWNkyXGW_lk5kD1JgLCzU9MCwC_R8TY/GeobaseLexicon#>.
+
+
+:geobaselexicon rdf:type lemon:Lexicon ;
+                lemon:language "en" ;
+                lemon:entry :mountain , 
+                            :city , 
+                            :town , 
+                            :state , 
+                            :river , 
+                            :road , 
+                            :highway , 
+                            :lake ,
+                            :capital_of , 
+                            :highest_point , 
+                            :lowest_point , 
+                            :area , 
+                            :population , 
+                            :population_density , 
+                            :density , 
+                            :height , 
+                            :length , 
+                            :elevation ,
+                            :size ,
+                            :borders , 
+                            :flows_through ,
+                            :passes_through , 
+                            :crosses , 
+                            :traverses ,
+                            :runs_through ,
+                            :big , 
+                            :small , 
+                            :high , 
+                            :long .
+
+
+
+
+:mountain a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "state"@en ;
+                        lexinfo:number lexinfo:singular ] ; 
+  lemon:otherForm [ lemon:writtenRep "states"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:sense [ lemon:reference <http://www.geobase.org/mountain> ] .
+
+:city a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "city"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "cities"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:sense [ lemon:reference <http://www.geobase.org/city> ] .
+
+:town a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "town"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "towns"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:sense [ lemon:reference <http://www.geobase.org/city> ] .
+
+:state a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "state"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "states"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:sense [ lemon:reference <http://www.geobase.org/state> ] .
+
+:river a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "river"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "rivers"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:sense [ lemon:reference <http://www.geobase.org/river> ] .
+
+:road a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "road"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "roads"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:sense [ lemon:reference <http://www.geobase.org/road> ] .
+
+:highway a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "highway"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "highways"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:sense [ lemon:reference <http://www.geobase.org/road> ] .
+
+:lake a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "lake"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "lakes"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:sense [ lemon:reference <http://www.geobase.org/lake> ] .
+
+
+
+
+:capital_of a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "capital"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "capitals"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:synBehavior [ rdf:type lexinfo:NounPPFrame ;
+                      lexinfo:subject :arg2capital ;
+                      lexinfo:prepositionalObject :arg1capital ] ; 
+  lemon:sense [ lemon:reference <http://www.geobase.org/capital> ;
+                lemon:subjOfProp :arg1capital ;
+                lemon:objOfProp  :arg2capital ] .
+
+:arg1capital lemon:marker :of .
+
+
+:highest_point a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "highest point"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "highest points"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:synBehavior [ rdf:type lexinfo:NounPPFrame ;
+   		      lexinfo:subject :arg2highest_point ;
+                      lexinfo:prepositionalObject :arg1highest_point ] ; 
+  lemon:sense [ lemon:reference <http://www.geobase.org/highest_point> ;
+                lemon:subjOfProp :arg1highest_point ;
+                lemon:objOfProp  :arg2highest_point ] .
+
+:arg1highest_point lemon:marker :of .
+
+
+:lowest_point a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "lowest point"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "lowest points"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:synBehavior [ rdf:type lexinfo:NounPPFrame ;
+                      lexinfo:subject :arg2lowest_point ;
+                      lexinfo:prepositionalObject :arg1lowest_point ] ; 
+  lemon:sense [ lemon:reference <http://www.geobase.org/lowest_point> ;
+                lemon:subjOfProp :arg1lowest_point ;
+                lemon:objOfProp  :arg2lowest_point ] .
+
+:arg1lowest_point lemon:marker :of .
+
+
+:area a lemon:LexicalEntry;
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "area"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "areas"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:synBehavior [ rdf:type lexinfo:NounPPFrame ;
+                      lexinfo:subject :arg2area ;
+                      lexinfo:prepositionalObject :arg1area ] ; 
+  lemon:sense [ lemon:reference <http://www.geobase.org/area> ;
+                lemon:subjOfProp :arg1area ;
+                lemon:objOfProp  :arg2area ] .
+
+:arg1area lemon:marker :of .
+
+
+:population a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "population"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "population"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:synBehavior [ rdf:type lexinfo:NounPPFrame ;
+                      lexinfo:subject :arg2population ;
+                      lexinfo:prepositionalObject :arg1population ] ; 
+  lemon:sense [ lemon:reference <http://www.geobase.org/population> ;
+                lemon:subjOfProp :arg1population ;
+                lemon:objOfProp  :arg2population ] .
+
+:arg1population lemon:marker :of .
+
+   
+:population_density a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "population density"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "population densities"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:synBehavior [ rdf:type lexinfo:NounPPFrame ;
+                      lexinfo:subject :arg2population_density ;
+                      lexinfo:prepositionalObject :arg1population_density ] ; 
+  lemon:sense [ lemon:reference <http://www.geobase.org/density> ;
+                lemon:subjOfProp :arg1population_density ;
+                lemon:objOfProp  :arg2population_density ] .
+
+:arg1population_density lemon:marker :of .
+
+   
+:density a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "density"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "densities"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:synBehavior [ rdf:type lexinfo:NounPPFrame ;
+                      lexinfo:subject :arg2density ;
+                      lexinfo:prepositionalObject :arg1density ] ; 
+  lemon:sense [ lemon:reference <http://www.geobase.org/density> ;
+                lemon:subjOfProp :arg1density ;
+                lemon:objOfProp  :arg2density ] .
+
+:arg1density lemon:marker :of .
+
+   
+:height a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "height"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "heights"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:synBehavior [ rdf:type lexinfo:NounPPFrame ;
+                      lexinfo:subject :arg2height ;
+                      lexinfo:prepositionalObject :arg1height ] ; 
+  lemon:sense [ lemon:reference <http://www.geobase.org/height> ;
+                lemon:subjOfProp :arg1height ;
+                lemon:objOfProp  :arg2height ] .
+
+:arg1height lemon:marker :of .
+
+   
+:length a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "length"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "lengths"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:synBehavior [ rdf:type lexinfo:NounPPFrame ;
+                      lexinfo:subject :arg2length ;
+                      lexinfo:prepositionalObject :arg1length ] ; 
+  lemon:sense [ lemon:reference <http://www.geobase.org/length> ;
+                lemon:subjOfProp :arg1length ;
+                lemon:objOfProp  :arg2length ] .
+
+:arg1length lemon:marker :of .   
+
+
+:elevation a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "elevation"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "elevations"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:synBehavior [ rdf:type lexinfo:NounPPFrame ;
+                      lexinfo:subject :arg2elevation ;
+                      lexinfo:prepositionalObject :arg1elevation ] ; 
+  lemon:sense [ lemon:reference <http://www.geobase.org/height> ;
+                lemon:subjOfProp :arg1elevation ;
+                lemon:objOfProp  :arg2elevation ] .
+
+:arg1elevation lemon:marker :of .  
+
+
+:size a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "size"@en ;
+                        lexinfo:number lexinfo:singular ] ;
+  lemon:otherForm [ lemon:writtenRep "sizes"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:synBehavior [ rdf:type lexinfo:NounPPFrame ;
+                      lexinfo:subject :arg2size ;
+                      lexinfo:prepositionalObject :arg1size ] ; 
+  lemon:sense [ lemon:reference <http://www.geobase.org/area> ;
+                lemon:subjOfProp :arg1size ;
+                lemon:objOfProp  :arg2size ] .
+
+:arg1size lemon:marker :of .   
+
+
+   
+
+:borders a lemon:LexicalEntry; 
+   lexinfo:partOfSpeech lexinfo:verb ;
+   lemon:canonicalForm [ lemon:writtenRep "border"@en ] ; 
+   lemon:otherForm [ lemon:writtenRep "borders"@en ;
+                     lexinfo:tense  lexinfo:present ;
+                     lexinfo:person lexinfo:thirdPerson ; 
+                     lexinfo:number lexinfo:singular ] ;
+   lemon:otherForm [ lemon:writtenRep "bordering"@en ;
+                     lexinfo:verbFormMood lexinfo:gerundive ] ;
+   lemon:otherForm [ lemon:writtenRep "bordered"@en ;
+                     lexinfo:verbFormMood lexinfo:participle ;
+                     lexinfo:aspect lexinfo:perfective ] ;
+   lemon:synBehavior [ rdf:type lexinfo:TransitiveFrame ;
+                       lexinfo:subject :arg1borders ;
+                       lexinfo:directObject :arg2borders ] ; 
+  lemon:sense [ lemon:reference <http://www.geobase.org/borders> ;
+                lemon:subjOfProp :arg1borders ;
+                lemon:objOfProp :arg2borders ] .
+
+   
+:crosses a lemon:LexicalEntry; 
+   lexinfo:partOfSpeech lexinfo:verb ;
+   lemon:canonicalForm [ lemon:writtenRep "cross"@en ] ;
+   lemon:otherForm [ lemon:writtenRep "crosses"@en ;
+                     lexinfo:tense lexinfo:present ;
+                     lexinfo:person lexinfo:thirdPerson ; 
+                     lexinfo:number lexinfo:singular ] ;
+   lemon:otherForm [ lemon:writtenRep "crossing"@en ;
+                     lexinfo:verbFormMood lexinfo:gerundive ] ;
+   lemon:otherForm [ lemon:writtenRep "crossed"@en ;
+                     lexinfo:verbFormMood lexinfo:participle ;
+                     lexinfo:aspect lexinfo:perfective ] ;
+   lemon:synBehavior [ rdf:type lexinfo:TransitiveFrame ;
+                       lexinfo:subject :arg1crosses ;
+                       lexinfo:directObject :arg2crosses ] ; 
+   lemon:sense [ lemon:reference <http://www.geobase.org/flowsThrough> ;
+                 lemon:propertyDomain <http://www.geobase.org/river> ;
+                 lemon:subjOfProp :arg1crosses ;
+                 lemon:objOfProp :arg2crosses ] ,
+               [ lemon:reference <http://www.geobase.org/passesThrough> ; 
+                 lemon:propertyDomain <http://www.geobase.org/road> ;
+                 lemon:subjOfProp :arg1crosses ;
+                 lemon:objOfProp :arg2crosses ] .
+
+
+:traverses a lemon:LexicalEntry; 
+   lexinfo:partOfSpeech lexinfo:verb ;
+   lemon:canonicalForm [ lemon:writtenRep "traverse"@en ] ;
+   lemon:otherForm [ lemon:writtenRep "traverses"@en ;
+                     lexinfo:tense lexinfo:present ;
+                     lexinfo:person lexinfo:thirdPerson ; 
+                     lexinfo:number lexinfo:singular ] ;
+   lemon:otherForm [ lemon:writtenRep "traversing"@en ;
+                     lexinfo:verbFormMood lexinfo:gerundive ] ;
+   lemon:otherForm [ lemon:writtenRep "traversed"@en ;
+                     lexinfo:verbFormMood lexinfo:participle ;
+                     lexinfo:aspect lexinfo:perfective ] ;
+   lemon:synBehavior [ rdf:type lexinfo:TransitiveFrame ;
+                       lexinfo:subject :arg1traverses ;
+                       lexinfo:directObject :arg2traverses ] ; 
+ lemon:sense [ lemon:reference <http://www.geobase.org/flowsThrough> ;
+               lemon:propertyDomain <http://www.geobase.org/river>;
+               lemon:subjOfProp :arg1traverses ;
+               lemon:objOfProp  :arg2traverses ] ,
+             [ lemon:reference <http://www.geobase.org/passesThrough> ; 
+               lemon:propertyDomain <http://www.geobase.org/road> ;
+               lemon:subjOfProp :arg1traverses ;
+               lemon:objOfProp  :arg2traverses ] .
+
+
+:flows_through a lemon:LexicalEntry;  
+   lexinfo:partOfSpeech lexinfo:verb ;
+   lemon:canonicalForm [ lemon:writtenRep "flow"@en ] ;
+   lemon:otherForm [ lemon:writtenRep "flows"@en ;
+                     lexinfo:tense lexinfo:present ;
+                     lexinfo:person lexinfo:thirdPerson ; 
+                     lexinfo:number lexinfo:singular ] ;
+   lemon:otherForm [ lemon:writtenRep "flowing"@en ;
+                     lexinfo:verbFormMood lexinfo:gerundive ] ;
+   lemon:otherForm [ lemon:writtenRep "flown"@en ;
+                     lexinfo:verbFormMood lexinfo:participle ;
+                     lexinfo:aspect lexinfo:perfective ] ;
+   lemon:synBehavior [ rdf:type lexinfo:IntransitivePPFrame ;
+                       lexinfo:subject :arg1flowsThrough ;
+                       lexinfo:prepositionalObject :arg2flowsThrough ] ; 
+   lemon:sense [ lemon:reference <http://www.geobase.org/flowsThrough> ;
+                 lemon:subjOfProp :arg1flowsThrough ;
+                 lemon:objOfProp :arg2flowsThrough ] .
+  
+:arg2flowsThrough lemon:marker :through .
+
+ 
+:runs_through a lemon:LexicalEntry; 
+   lexinfo:partOfSpeech lexinfo:verb ;
+   lemon:canonicalForm [ lemon:writtenRep "run"@en ] ;
+   lemon:otherForm [ lemon:writtenRep "runs"@en ;
+                     lexinfo:tense lexinfo:present ;
+                     lexinfo:person lexinfo:thirdPerson ; 
+                     lexinfo:number lexinfo:singular ] ;
+   lemon:otherForm [ lemon:writtenRep "running"@en ;
+                     lexinfo:verbFormMood lexinfo:gerundive ] ;
+   lemon:otherForm [ lemon:writtenRep "ran"@en ;
+                     lexinfo:verbFormMood lexinfo:participle ;
+                     lexinfo:aspect lexinfo:perfective ] ;
+   lemon:synBehavior [ rdf:type lexinfo:IntransitivePPFrame ;
+                       lexinfo:subject :arg1runsThrough ;
+                       lexinfo:prepositionalObject :arg2runsThrough ] ; 
+  lemon:sense [ lemon:reference <http://www.geobase.org/flowsThrough> ;
+                lemon:subjOfProp :arg1runsThrough ;
+                lemon:objOfProp :arg2runsThrough ] .
+   
+:arg2runsThrough lemon:marker :through .
+
+
+:passes_through a lemon:LexicalEntry; 
+   lexinfo:partOfSpeech lexinfo:verb ;
+   lemon:canonicalForm [ lemon:writtenRep "pass"@en ];
+   lemon:otherForm [ lemon:writtenRep "passes"@en ;
+                     lexinfo:tense lexinfo:present ;
+                     lexinfo:person lexinfo:thirdPerson ; 
+                     lexinfo:number lexinfo:singular ] ;
+   lemon:otherForm [ lemon:writtenRep "passing"@en ;
+                     lexinfo:verbFormMood lexinfo:gerundive ] ;
+   lemon:otherForm [ lemon:writtenRep "passed"@en ;
+                     lexinfo:verbFormMood lexinfo:participle ;
+                     lexinfo:aspect lexinfo:perfective ] ;
+   lemon:synBehavior [ rdf:type lexinfo:IntransitivePPFrame ;
+                       lexinfo:subject :arg1passesThrough ;
+                       lexinfo:prepositionalObject :arg2passesThrough ] ; 
+   lemon:sense [ lemon:reference <http://www.geobase.org/passesThrough> ;
+                 lemon:subjOfProp :arg1passesThrough ;
+                 lemon:objOfProp :arg2passesThrough ] .
+   
+:arg2passesThrough lemon:marker :through .
+
+
+   
+
+
+:big a lemon:LexicalEntry; 
+   lexinfo:partOfSpeech lexinfo:adjective ;
+   lexinfo:negative lexinfo:no ;
+   lemon:canonicalForm [ lemon:writtenRep "big"@en ] ;
+   lemon:otherForm [ lemon:writtenRep "bigger"@en ;
+                     lexinfo:degree lexinfo:comparative ] ;
+   lemon:otherForm [ lemon:writtenRep "biggest"@en ;
+                     lexinfo:degree lexinfo:superlative ] ;
+   lemon:sense [ lemon:reference <http://www.geobase.org/area> ;
+                 lemon:propertyDomain <http://www.geobase.org/city> ] ,
+               [ lemon:reference <http://www.geobase.org/area> ;
+                 lemon:propertyDomain <http://www.geobase.org/state> ] ,
+               [ lemon:reference <http://www.geobase.org/population> ;
+                 lemon:propertyDomain <http://www.geobase.org/city> ] ,
+               [ lemon:reference <http://www.geobase.org/population> ;
+                 lemon:propertyDomain <http://www.geobase.org/state> ] ,
+               [ lemon:reference <http://www.geobase.org/height> ;
+                 lemon:propertyDomain <http://www.geobase.org/mountain> ] .
+
+
+:small a lemon:LexicalEntry; 
+   lexinfo:partOfSpeech lexinfo:adjective ;
+   lexinfo:negative lexinfo:yes ;
+   lemon:canonicalForm [ lemon:writtenRep "small"@en ] ;
+   lemon:otherForm [ lemon:writtenRep "smaller"@en ;
+                     lexinfo:degree lexinfo:comparative ] ;
+   lemon:otherForm [ lemon:writtenRep "smallest"@en ;
+                     lexinfo:degree lexinfo:superlative ] ;
+   lemon:sense [ lemon:reference <http://www.geobase.org/area> ;
+                 lemon:propertyDomain <http://www.geobase.org/city> ] ,
+               [ lemon:reference <http://www.geobase.org/area> ;
+                 lemon:propertyDomain <http://www.geobase.org/state> ] ,
+               [ lemon:reference <http://www.geobase.org/population> ;
+                 lemon:propertyDomain <http://www.geobase.org/city> ] ,
+               [ lemon:reference <http://www.geobase.org/population> ;
+                 lemon:propertyDomain <http://www.geobase.org/state> ] ,
+               [ lemon:reference <http://www.geobase.org/height> ;
+                 lemon:propertyDomain <http://www.geobase.org/mountain> ] .
+
+
+:long a lemon:LexicalEntry; 
+   lexinfo:partOfSpeech lexinfo:adjective ;
+   lexinfo:negative lexinfo:no ;
+   lemon:canonicalForm [ lemon:writtenRep "long"@en ] ;
+   lemon:otherForm [ lemon:writtenRep "long"@en ;
+                     lexinfo:degree lexinfo:comparative ] ;
+   lemon:otherForm [ lemon:writtenRep "longest"@en ;
+                     lexinfo:degree lexinfo:superlative ] ;
+   lemon:sense [ lemon:reference <http://www.geobase.org/length> ] .
+
+
+:high a lemon:LexicalEntry; 
+   lexinfo:partOfSpeech lexinfo:adjective ;
+   lexinfo:negative lexinfo:no ;
+   lemon:canonicalForm [ lemon:writtenRep "high"@en ] ;
+   lemon:otherForm [ lemon:writtenRep "higher"@en ;
+                     lexinfo:degree lexinfo:comparative ] ;
+   lemon:otherForm [ lemon:writtenRep "highest"@en ;
+                     lexinfo:degree lexinfo:superlative ] ;
+   lemon:sense [ lemon:reference <http://www.geobase.org/high> ] .
+                     
+   
+
+:of lexinfo:partOfSpeech lexinfo:preposition ; 
+    lemon:canonicalForm [ lemon:writtenRep "of"@en ] .
+
+:through lexinfo:partOfSpeech lexinfo:preposition ; 
+         lemon:canonicalForm [ lemon:writtenRep "through"@en ] . 
+
