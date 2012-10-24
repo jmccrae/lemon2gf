@@ -64,7 +64,7 @@ def convert_lexica(signature,lexica,gf_libs,log):
         log.write('\n-------- RECORDS -----------------\n\n')
         for h in hashes: log.write(str(h) +'\n')
 
-        for c in signature['classes']+signature['funclasses']: c['lincat'] = lincats['category']
+        for c in signature['categories']+signature['funcats']: c['lincat'] = lincats['category']
         signature['proposition']['lincat'] = print_lincat(lincats['proposition'])
         signature['entity']['lincat']      = print_lincat(lincats['entity'])
 
@@ -148,18 +148,18 @@ def __collect_senses__(graph,lexicon,signature):
            if new: new_senses.append(s)
 
     for s in senses: 
-        # rename cat constructors
-        # and if class has an isA argument, change it from cat to funcat
+        # rename category constructors
+        # and if class has an isA argument, move it from categories to funcats
         swap = None
-        for c in signature['classes']:
+        for c in signature['categories']:
             if s['reference'] == c['type']: 
                s['reference'] = c['name'] 
                if s.has_key('isA'): swap = c
                break
         if swap:
-           signature['classes'].remove(swap)
+           signature['categories'].remove(swap)
            swap['domain'] = 'Thing'
-           signature['funclasses'].append(swap)
+           signature['funcats'].append(swap)
         # process domain and range restrictions
         domain_res = s.has_key('propertyDomain')
         range_res  = s.has_key('propertyRange')
@@ -321,7 +321,7 @@ def __construct_reference_chain__(sense,signature):
           pref = 'union_'
           for c in cs: pref += c['reference'] + '_'
           pref += 'with_' + ref
-       signature['classes'].append( {'name': 'mk'+ref, 'type': ref} )
+       signature['categories'].append( {'name': 'mk'+ref, 'type': ref} )
     else:
        signature['functions'].append( {'name': ref, 'domain': dom, 'range': rng} )
 

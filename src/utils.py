@@ -31,11 +31,11 @@ def print_signature(signature):
        sig += '\nEntity:      ' + str(signature['entity'])
        sig += '\n\nPredefined: \n' 
        for p in signature['predefined']: sig += str(p) + '\n'
-       sig += '\nClasses:\n'
-       for c in signature['classes']:    sig += str(c) + '\n'
-       sig += '\nFunctional classes:\n'
-       if signature['funclasses']:
-          for c in signature['funclasses']: sig += str(c) + '\n'
+       sig += '\nCategories:\n'
+       for c in signature['categories']:    sig += str(c) + '\n'
+       sig += '\nFunctional categories:\n'
+       if signature['funcats']:
+          for c in signature['funcats']: sig += str(c) + '\n'
        else: sig += ' None.\n' 
        sig += '\nFunctions:\n '
        for f in signature['functions']:  sig += str(f) + '\n'
@@ -57,7 +57,7 @@ def listupdate(d1,d2):
 
 def isCat(s,signature):
     if s.startswith('mk'): return True
-    for c in signature['classes'] + signature['funclasses']:
+    for c in signature['categories'] + signature['funcats']:
         if c['type'] == s or c['name'] == s: return True
     return False
 

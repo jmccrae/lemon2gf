@@ -9,20 +9,20 @@ abstract $name = {
    $pre.name;
   #end for
 
-  #for $c in $classes 
+  #for $c in $categories 
    $c.type; 
   #end for
-  #for $c in $funclasses
+  #for $c in $funcats
    $c.type;
   #end for
 
  fun
    
-  #for $c in $classes
+  #for $c in $categories
    $c.name : $c.type; 
   #end for
 
-  #for $c in $funclasses
+  #for $c in $funcats
    $c.name : $c.domain -> $c.type;
   #end for
 

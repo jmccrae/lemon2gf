@@ -20,7 +20,7 @@ def convert_tbox(signature,tbox,log):
         class_s = frag_uri(str(c.identifier))
         for d in signature['predefined'] + [signature['proposition'],signature['entity']]:
             if d['name'] == class_s: d['name'] = d['name']+'_p'
-        signature['classes'].append( {'name': "mk"+class_s, 'type': class_s} )
+        signature['categories'].append( {'name': "mk"+class_s, 'type': class_s} )
  
     # collect properties
     for p in owl.AllProperties(g):

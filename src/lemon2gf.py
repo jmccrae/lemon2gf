@@ -14,9 +14,9 @@ signature = dict( proposition  = dict(name='Proposition'),
                                    dict(name='Integer', lincat='CN'),
                                    dict(name='Decimal', lincat='CN'),
                                    dict(name='DateTime',lincat='CN') ],
-                   classes    = [],
-                   funclasses = [],
+                   categories = [],
                    functions  = [],
+                   funcats    = [],
                    entities   = []
                  )
 
