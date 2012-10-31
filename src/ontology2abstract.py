@@ -1,17 +1,16 @@
 
+import logging
+
 import FuXi.Syntax.InfixOWL as owl
 from Cheetah.Template import Template
+
 from utils import *
 
 
-def convert_tbox(signature,tbox,log):
-
-    print 'Reading ontology...'
+def convert_tbox(signature,tbox):
 
     g = owl.Graph()
     g.parse(tbox)
-
-    print 'Constructing abstract syntax...'
 
     signature['name'] = capitalize1(frag_file(tbox))
 
@@ -41,7 +40,7 @@ def render_tbox(signature):
     t = Template(abstract_in,searchList=[signature])
     abstract_out.write(str(t))
     abstract_out.close()
-    print 'Abstract syntax (T-Box): '+ out_file
+    logging.info('Abstract syntax (T-Box): '+ out_file)
 
 def convert_abox(abox,log):
-    print 'Skipping A-Box... (Not implemented yet.)'
+    logging.info('Skipping A-Box... (Not implemented yet.)')

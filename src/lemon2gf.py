@@ -1,6 +1,8 @@
 
 import sys
 import getopt
+import logging
+
 from ontology2abstract import *
 from lexicon2concrete  import *
 from utils import print_signature
@@ -22,6 +24,15 @@ signature = dict( proposition  = dict(name='Proposition'),
 
 
 def run(argv):
+
+    logging.basicConfig(filename='../test/out/lemon2gf.log',
+                        filemode='w', 
+                        level=logging.INFO,
+                        format='%(levelname)-8s %(message)s')
+    console = logging.StreamHandler()
+    console.setLevel(logging.WARNING)
+    console.setFormatter(logging.Formatter('%(levelname)-8s %(message)s'))
+    logging.getLogger('').addHandler(console)
 
     __init__()
     verbose = False
@@ -52,23 +63,20 @@ def __init__():
 def __generateGF__(signature,tbox,abox,lexica):
 
     domain_name = ''
-    log = open('../test/out/log','wa')
 
-    if not tbox is None: convert_tbox(signature,tbox,log)
-    else: print '[Warning] No T-Box specified. Resulting GF grammar will not compile.'
+    if not tbox is None: convert_tbox(signature,tbox)
+    else: logging.warning('No T-Box specified. Resulting GF grammar will not compile.')
 
-    if not abox is None: convert_abox(abox,domain_name,log)
+    if not abox is None: convert_abox(abox,domain_name)
 
-    if lexica: convert_lexica(signature,lexica,gf_libs,log)
-    else: print '[Warning] No lexicon specified.'
+    if lexica: convert_lexica(signature,lexica,gf_libs)
+    else: logging.warning('No lexicon specified.')
     
-    log.write(print_signature(signature))
+    logging.info('Signature:' + print_signature(signature))
 
     render_tbox(signature)
     
-    print 'Done.'
-    print 'Log written to: /test/out/log' 
-    log.close()
+    logging.info('Done.')
 
 
 def __usage__():

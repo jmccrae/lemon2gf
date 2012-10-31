@@ -401,9 +401,9 @@
 
 
 :test a lemon:LexicalEntry ;
-  isocat:DC-1345 isocat:DC-1424 ;
+  isocat:DC-1345 isocat:NonExistingPos ;
   lemon:canonicalForm [ lemon:writtenRep "test"@en ] ;
-  lemon:synBehavior [ rdf:type lexinfo:IntransitiveFrame ; 
+  lemon:synBehavior [ rdf:type lexinfo:NonExistingFrame ; 
                       isocat:DC-2261 :arg_test ] ;
   lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightArrival>;
                 lemon:subjOfProp :arg_speaker ; 
