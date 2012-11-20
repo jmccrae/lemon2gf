@@ -231,7 +231,7 @@ def __add_lexical_information__(graph,senses):
                        else: 
                               a = dict(name=toGF(b[k]))
                               __queryupdate__(graph,a,'synArg',str(b[k]),toGF)
-                              b[k] = a                       
+                              b[k] = a                    
                 # add syn behavior
                 extended_e['synBehaviors'].append(b)                
             # TODO decompositions

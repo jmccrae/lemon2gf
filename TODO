@@ -1,8 +1,7 @@
 
-
-* A-Box 
+* A-Box (pos=properNoun)
 * Templates for: ditransitive verbs, prepositions, adjectives
-* also: frames for general lemon:Frame, e.g. for multivalent nouns
+* Templates for other languages
 * make sure and document that templates cover John's lemon patterns
 * allow for lists of singular and plural values
 * filter opers for those already defined in resource grammar
@@ -12,7 +11,7 @@ Think about:
 
 * decompositions (and type safety on the GF side)
 * restrictions (lemon:condition)
-
+* NounDefault template: np = mkNP (mkCN name_N) in case of mass nouns
 
 Implementation details:
 

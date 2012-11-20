@@ -2,10 +2,10 @@
 ##from .templatex.aux.lins import *
 ##
 #set $aux = Template(file="templates/aux/lins.tmpl")
-#set $vp_lins         = $aux.get_lins($advs,'mkVP','V2','(mkVP '+$name+'_V2 '+$syn.directObject.name+')')
-#set $passive_vp_lins = $aux.get_lins($advs,'mkVP','V2','(passiveVP '+$name+'_V2)')
-#set $passive_by_vp_lins = $aux.get_lins($advs,'mkVP','V2','(passiveVP '+$name+'_V2 '+$syn.directObject.name+')')
-#set $vp_slash_lins   = $aux.get_lins($advs,'mkVP','V2','(mkVPSlash '+$name+'_V2)')
+#set $vp_lins         = $aux.get_lins($advs,'mkVP','(mkVP '+$name+'_V2 '+$syn.directObject.name+')')
+#set $passive_vp_lins = $aux.get_lins($advs,'mkVP','(passiveVP '+$name+'_V2)')
+#set $passive_by_vp_lins = $aux.get_lins($advs,'mkVP','(passiveVP '+$name+'_V2 '+$syn.directObject.name+')')
+#set $vp_slash_lins   = $aux.get_lins($advs,'mkVP','(mkVPSlash '+$name+'_V2)')
 ##
 #set $active  = $aux.build_lins($vp_lins,'mkCl (mkNP ' + $syn.subject.name +') ')
 #set $passive = $aux.build_lins($passive_vp_lins,'mkCl (mkNP ' + $syn.subject.name +') ')

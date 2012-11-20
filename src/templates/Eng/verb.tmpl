@@ -9,7 +9,7 @@
 #if $present
 #if $past
 #if $participle
-#set global $forms = c'"$present" "$past" "$particple"'
+#set global $forms = c'"$present" "$past" "$participle"'
 #else 
 $set global $forms = c'"$present" "$past"'
 #end if
@@ -24,9 +24,7 @@ $set global $forms = c'"$present" "$past"'
 #for $syn in $synBehaviors
 #set global $syn = $syn
 ##
-#if $syn.has_key('prepositionalObject')
-#include "templates/aux/collect_prepositionalObjects.tmpl"
-#end if
+#include "templates/aux/collect_prepositionalArgs.tmpl"
 ##
 #if $syn.has_key('frame') 
 #set $path = ("templates/"+$lang+"/"+$syn.frame).encode('ascii')

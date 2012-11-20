@@ -1,4 +1,4 @@
-SELECT ?blank ?frame ?subject ?directObject ?indirectObject ?prepositionalObject ?synArg WHERE { #slurp 
+SELECT ?blank ?frame ?subject ?directObject ?indirectObject ?prepositionalObject ?prepositionalAdjunct ?possessiveAdjunct WHERE { #slurp 
 ## 
  <\$uri> <http://www.monnet-project.eu/lemon#synBehavior> ?blank .
  ?blank a ?frame . #slurp
@@ -34,6 +34,21 @@ SELECT ?blank ?frame ?subject ?directObject ?indirectObject ?prepositionalObject
  #set $sep = ' UNION ' 
  #end for
  } #slurp
- OPTIONAL { ?blank <http://www.monnet-project.eu/lemon#synArg> ?synArg . } #slurp
+##
+ OPTIONAL { #slurp
+ #set $sep = ''
+ #for $p in $prepositionalAdjunct
+ $sep { ?blank <$p> ?prepositionalAdjunct . } #slurp
+ #set $sep = ' UNION ' 
+ #end for
+ } #slurp
+##
+ OPTIONAL { #slurp
+ #set $sep = ''
+ #for $p in $possessiveAdjunct
+ $sep { ?blank <$p> ?possessiveAdjunct . } #slurp
+ #set $sep = ' UNION ' 
+ #end for
+ } #slurp
 ##
 }

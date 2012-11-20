@@ -1,12 +1,25 @@
 ##
 #set $aux = Template(file="templates/aux/lins.tmpl")
+##
+#set $cn_lins = $aux.get_lins(($poss_advs | $advs),'mkCN','(mkCN '+$name+'_N)')
 #set $noun_pp_lins = $aux.get_lins($advs,'mkCN','(mkCN '+$name+'_N)')
 ##
+#set $cn = $aux.build_lins($cn_lins,'')
+#set $np = $aux.build_lins($poss_nps,'')
 #set $noun_pp = $aux.build_lins($noun_pp_lins,'')
 ##
 
 lin
-  noun_pp = $noun_pp
+#if $poss_advs
+   cn = $cn
+   np = $np
+#else 
+#if $advs
+   noun_pp = $noun_pp
+#else 
+   cn = mkCN ${name}_N
+#end if
+#end if
 
 oper 
    ${name}_N : N;

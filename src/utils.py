@@ -71,8 +71,7 @@ def isCat(s,signature):
 
 def construct_lincats():
     lincats = dict()
-    lincats['category'] = open('config/lincat_default_category','r').read().strip()
-    for label in ('proposition','entity'):
+    for label in ('category','proposition','entity'):
       lincats[label] = []
       for line in open('config/lincat_default_'+label,'r').readlines():
           if line.strip() != '': lincats[label].append(line.strip())

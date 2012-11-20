@@ -1,7 +1,7 @@
 ##
 #set $aux = Template(file="templates/aux/lins.tmpl")
 ##
-#set $vp_lins = $aux.get_lins($advs,'mkVP','V','(mkVP '+$name+'_V)')
+#set $vp_lins = $aux.get_lins($advs,'mkVP','(mkVP '+$name+'_V)')
 ##
 #set $active         = $aux.build_lins($vp_lins,'mkCl (mkNP ' + $syn.subject.name +') ')
 #set $subject_slash  = $aux.build_lins($vp_lins,'')
