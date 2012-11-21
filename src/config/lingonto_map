@@ -1,9 +1,11 @@
 pos http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech http://www.isocat.org/datcat/DC-1345
 
-subject             http://www.lexinfo.net/ontology/2.0/lexinfo#subject             http://www.isocat.org/datcat/DC-2261
-directObject        http://www.lexinfo.net/ontology/2.0/lexinfo#directObject        http://www.isocat.org/datcat/DC-2263
-indirectObject      http://www.lexinfo.net/ontology/2.0/lexinfo#indirectObject      http://www.isocat.org/datcat/DC-1310
-prepositionalObject http://www.lexinfo.net/ontology/2.0/lexinfo#prepositionalObject http://www.isocat.org/datcat/DC-4638
+subject              http://www.lexinfo.net/ontology/2.0/lexinfo#subject              http://www.isocat.org/datcat/DC-2261
+directObject         http://www.lexinfo.net/ontology/2.0/lexinfo#directObject         http://www.isocat.org/datcat/DC-2263
+indirectObject       http://www.lexinfo.net/ontology/2.0/lexinfo#indirectObject       http://www.isocat.org/datcat/DC-1310
+prepositionalObject  http://www.lexinfo.net/ontology/2.0/lexinfo#prepositionalObject  http://www.isocat.org/datcat/DC-4638
+prepositionalAdjunct http://www.lexinfo.net/ontology/2.0/lexinfo#prepositionalAdjunct
+possessiveAdjunct    http://www.lexinfo.net/ontology/2.0/lexinfo#possessiveAdjunct
 
 number   http://www.lexinfo.net/ontology/2.0/lexinfo#number   http://www.isocat.org/datcat/DC-1298
 singular http://www.lexinfo.net/ontology/2.0/lexinfo#singular http://www.isocat.org/datcat/DC-1387

@@ -1,30 +1,47 @@
 #import itertools
 ##
-#set $pobj = $syn.prepositionalObject
-#set global $ms = []
+#set global $advs = []
+#set global $ms   = []
 ##
-#set $required_pobjs = []
-#set $optional_pobjs = []
+#set $required_pargs = []
+#set $optional_pargs = []
+##
+## COLLECT $required_pargs and $optional_pargs
+##
+#if $syn.has_key('prepositionalObject') 
+#set $pobj = $syn.prepositionalObject
 #if type($pobj) == list
  #for $p in $pobj
  #if $p.has_key('optional') and $p['optional'] == 'true'
-  $optional_pobjs.append($p)
+  $optional_pargs.append($p)
  #else 
-  $required_pobjs.append($p)
+  $required_pargs.append($p)
  #end if
  #end for
 #else
  #if $pobj.has_key('optional') and $pobj['optional'] == 'true'
-  $optional_pobjs.append($pobj)
+  $optional_pargs.append($pobj)
  #else 
-  $required_pobjs.append($pobj)
+  $required_pargs.append($pobj)
  #end if
 #end if
+#end if
 ##
-#
-#set global $advs = []
+#if $syn.has_key('prepositionalAdjunct') 
+#set $padj = $syn.prepositionalAdjunct
+#if type($padj) == list
+ #for $p in $padj
+  $optional_pargs.append($p)
+ #end for
+#else
+  $optional_pargs.append($pobj)
+#end if
+#end if
+##
+## BUILD $advs
+##
 #set $adv = []
-#for $p in $required_pobjs
+#for $p in $required_pargs
  #set $marker = dict(long=$p.marker,short=$p.marker.replace(' ',''))
  $ms.append($marker)
  $adv.append( '(Syntax'+str($lang)+'.mkAdv ' + str($marker.short) + '_Prep (mkNP ' + str($p.name) + '))' )
@@ -33,8 +50,8 @@
  $advs.append($adv)
 #end if
 ##
-#for $n in range(1,len($optional_pobjs)+1)
- #for $combination in itertools.combinations($optional_pobjs,$n)
+#for $n in range(1,len($optional_pargs)+1)
+ #for $combination in itertools.combinations($optional_pargs,$n)
   #set $combs = itertools.permutations(list($combination))
   #for $comb in $combs
    #set $new_adv = $adv[:]

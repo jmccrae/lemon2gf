@@ -1,17 +1,21 @@
 
-from rdflib import Graph
-from Cheetah.Template import Template
-
+import logging
+from os.path import exists
 import json
 import re
+
+from rdflib import Graph
+from Cheetah.Template import Template
 
 from utils import *
 
 
 # Warning and error messages
-language_error   = lambda x: "[Error] Lexicon "+x+" specifies either no language or more than one."
-language_warning = lambda x: "[Warning] There is no resource grammar for language "+x+". Resulting GF grammar will not compile."
-too_many_pos_warning = lambda x: "[Warning] The lexical entry "+x+" has more than one part of speech."
+language_error   = lambda x: "Lexicon "+x+" specifies either no language or more than one."
+language_warning = lambda x: "There is no resource grammar for language "+x+". Resulting GF grammar will not compile."
+too_many_pos_warning = lambda x: "The lexical entry "+x+" has more than one part of speech."
+pos_or_frame_not_found_warning = lambda x: "No template for part of speech or frame (or both) in entry "+x+" found."
+pos_not_found_warning = lambda x: "Unknown part of speech: "+x
 
 # Query constructor
 q = lambda x,y: str(Template(file='sparql/'+x+'.sparql',searchList=[{'uri':y}]))
@@ -20,10 +24,10 @@ q = lambda x,y: str(Template(file='sparql/'+x+'.sparql',searchList=[{'uri':y}]))
 lincats = construct_lincats()
 
 
-def convert_lexica(signature,lexica,gf_libs,log):
+def convert_lexica(signature,lexica,gf_libs):
 
   for lexicon_file in lexica:
-    print 'Converting ' + lexicon_file + '...'
+    logging.info('Converting: ' + lexicon_file)
 
     # load RDF file
     g = Graph()
@@ -38,8 +42,8 @@ def convert_lexica(signature,lexica,gf_libs,log):
         if len(langs) == 1:
            l = langs[0]
            if l in gf_libs.keys(): language = gf_libs[l]
-           else: language = l ; print language_warning(l)
-        else: print language_error; system.exit()
+           else: language = l ; logging.warning(language_warning(l))
+        else: logging.error(language_error); system.exit()
         
         # render template for top-level concrete syntax file
         t = Template(file='templates/concrete.tmpl')
@@ -52,17 +56,16 @@ def convert_lexica(signature,lexica,gf_libs,log):
         concrete_out = open(out_file,'w')
         concrete_out.write(str(t))
         concrete_out.close()
-        print 'Concrete syntax (top level): '+ out_file
+        logging.info('Concrete syntax (top level): '+ out_file)
 
         # lexicon -> Lexical$domain_name$language.gf
         t = Template(file='templates/lexical.tmpl')
         t.name = signature['name']
         t.lang = language
 
-        hashes = __construct_hashes__(g,lexicon,signature)
-        
-        log.write('\n-------- RECORDS -----------------\n\n')
-        for h in hashes: log.write(str(h) +'\n')
+        records = __construct_records__(g,lexicon,signature)       
+
+        logging.info('Records:' + print_records(records))
 
         for c in signature['categories']+signature['funcats']: c['lincat'] = lincats['category']
         signature['proposition']['lincat'] = print_lincat(lincats['proposition'])
@@ -72,21 +75,29 @@ def convert_lexica(signature,lexica,gf_libs,log):
 
         linearizations = []
         opers = []
-        for h in hashes:
-            l = dict(ref=h['reference'],lin=[])
+
+        for r in records:
+
+            l = dict(ref=r['reference'],lin=[])
             args = ''
-            if h.has_key('subjOfProp') and h.has_key('objOfProp'): 
-               args += h['subjOfProp'] + ' '
-               if type(h['objOfProp']) == list:
-                  for o in h['objOfProp']: args += o + ' '
-               else: args += h['objOfProp']
-            elif h.has_key('isA'): args += h['isA']
+            if r.has_key('subjOfProp') and r.has_key('objOfProp'): 
+               args += r['subjOfProp'] + ' '
+               if type(r['objOfProp']) == list:
+                  for o in r['objOfProp']: args += o + ' '
+               else: args += r['objOfProp']
+            elif r.has_key('isA'): args += r['isA']
             l['args'] = args
-            for e in h['entries']:
+
+            for e in r['entries']:
                 # render templates based on pos and synBehavior
-                tmpl_path = 'templates/'+language+'/'+e['pos']+'.tmpl'
-                t_pos = str( Template(file=tmpl_path,searchList=[e,{'lang':language,'ref':h['reference']}]) )
+                try: 
+                   tmpl_path = 'templates/'+language+'/'+e['pos']+'.tmpl'
+                   t_pos = str( Template(file=tmpl_path,searchList=[e,{'lang':language,'ref':r['reference']}]) )
+                except (KeyError, IOError, OSError):
+                   logging.warning(pos_or_frame_not_found_warning(str(e)))
+
                 __split_lin_oper__(t_pos,l,opers) 
+
             linearizations.append(l)
         __contract_lin_records__(linearizations)
         __fill_lin_records__(linearizations,signature)
@@ -97,10 +108,10 @@ def convert_lexica(signature,lexica,gf_libs,log):
         concrete_out = open(out_file,'w')
         concrete_out.write(str(t))
         concrete_out.close()
-        print 'Concrete syntax (lexical level): '+ out_file
+        logging.info('Concrete syntax (lexical level): '+ out_file)
 
 
-def __construct_hashes__(graph,lexicon,signature):
+def __construct_records__(graph,lexicon,signature):
 
     senses = __collect_senses__(graph,lexicon,signature)
     __add_lexical_information__(graph,senses)
@@ -193,12 +204,14 @@ def __add_lexical_information__(graph,senses):
             # part of speech
             j = graph.query(q('pos',str(e))).serialize(format='json')
             for b in get_bindings(j,lambda x:x):
-                if len(b.keys()) > 1: print too_many_pos_warning                
+                if len(b.keys()) > 1: logging.warning(too_many_pos_warning(str(e)))
                 for k in b.keys(): 
-                    pos = pos_map[b[k]]
-                    extended_e['pos'] = pos
-                    # and part-of-speech-specific information
-                    __queryupdate__(graph,extended_e,pos,str(e),toGF)
+                    if pos_map.has_key(b[k]):
+                       pos = pos_map[b[k]]
+                       extended_e['pos'] = pos
+                       # and part-of-speech-specific information
+                       __queryupdate__(graph,extended_e,pos,str(e),toGF)
+                    else: logging.warning(pos_not_found_warning(b[k]))
 
             # syntactic behaviors
             extended_e['synBehaviors'] = []
@@ -218,7 +231,7 @@ def __add_lexical_information__(graph,senses):
                        else: 
                               a = dict(name=toGF(b[k]))
                               __queryupdate__(graph,a,'synArg',str(b[k]),toGF)
-                              b[k] = a                       
+                              b[k] = a                    
                 # add syn behavior
                 extended_e['synBehaviors'].append(b)                
             # TODO decompositions
@@ -329,11 +342,11 @@ def __construct_reference_chain__(sense,signature):
     # determine arguments
     if   len(isA) == 1: new_sense['isA'] = isA[0]
     elif len(isA) > 1: 
-         print '[Warning] Found a complex class sense ('+ref+') but cannot determine its argument; I use arg0 instead.'
+         logging.warning('Found a complex class sense ('+ref+') but cannot determine its argument; I use arg0 instead.')
          new_sense['isA'] = 'arg0'
     if   len(start_s) == 1: new_sense['subjOfProp'] = start_s[0]
     elif len(start_s) > 1: 
-         print '[Warning] Found a complex property sense ('+ref+') with more than one subject argument. This will not work! I use arg1 instead.'
+         logging.warning('Found a complex property sense ('+ref+') with more than one subject argument. This will not work! I use arg1 instead.')
          new_sense['subjOfProp'] = 'arg1'
     if   len(end_o) == 1: new_sense['objOfProp'] = end_o[0]
     elif len(end_o) > 1:  new_sense['objOfProp'] = end_o

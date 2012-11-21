@@ -472,6 +472,16 @@
 :arg_airport     lemon:marker [ lemon:canonicalForm [ lemon:writtenRep "at"@en ] ] .
 
 
+:test a lemon:LexicalEntry ;
+  isocat:DC-1345 isocat:NonExistingPos ;
+  lemon:canonicalForm [ lemon:writtenRep "test"@en ] ;
+  lemon:synBehavior [ rdf:type lexinfo:NonExistingFrame ; 
+                      isocat:DC-2261 :arg_test ] ;
+  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightArrival>;
+                lemon:subjOfProp :arg_speaker ; 
+                lemon:objOfProp  :arg_test ;
+                lemon:propertyDomain <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Country> ;
+                lemon:propertyRange  <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#City> ] . 
 
 :from a lemon:LexicalEntry;
       isocat:DC-1345 isocat:DC-1366 ;

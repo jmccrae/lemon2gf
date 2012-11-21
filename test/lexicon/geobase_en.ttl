@@ -10,6 +10,7 @@
 :geobaselexicon rdf:type lemon:Lexicon ;
                 lemon:language "en" ;
                 lemon:entry :mountain , 
+                            :peak ,
                             :city , 
                             :town , 
                             :state , 
@@ -44,9 +45,17 @@
 
 :mountain a lemon:LexicalEntry; 
   lexinfo:partOfSpeech lexinfo:noun ;
-  lemon:canonicalForm [ lemon:writtenRep "state"@en ;
+  lemon:canonicalForm [ lemon:writtenRep "mountain"@en ;
                         lexinfo:number lexinfo:singular ] ; 
-  lemon:otherForm [ lemon:writtenRep "states"@en ;
+  lemon:otherForm [ lemon:writtenRep "mountains"@en ;
+                    lexinfo:number lexinfo:plural ] ;
+  lemon:sense [ lemon:reference <http://www.geobase.org/mountain> ] .
+
+:peak a lemon:LexicalEntry; 
+  lexinfo:partOfSpeech lexinfo:noun ;
+  lemon:canonicalForm [ lemon:writtenRep "peak"@en ;
+                        lexinfo:number lexinfo:singular ] ; 
+  lemon:otherForm [ lemon:writtenRep "peaks"@en ;
                     lexinfo:number lexinfo:plural ] ;
   lemon:sense [ lemon:reference <http://www.geobase.org/mountain> ] .
 
