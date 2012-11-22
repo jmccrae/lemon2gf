@@ -51,7 +51,9 @@
     lemon:entry :to_stop_in;
     lemon:entry :fly_from_to;
     lemon:entry :go_from_to;
-    lemon:entry :travel_from_to .
+    lemon:entry :travel_from_to;
+    lemon:entry :from;
+    lemon:entry :to .
 
 
 :airline a lemon:LexicalEntry ;
@@ -347,10 +349,10 @@
   isocat:DC-1345 isocat:DC-1424 ;
   lemon:canonicalForm [ lemon:writtenRep "leave"@en ] ;
   lemon:synBehavior [ rdf:type lexinfo:TransitiveFrame ;
-                      isocat:DC-2261 :arg_leg ;
-                      isocat:DC-4638 :arg_left ] ;
+                      isocat:DC-2261 :arg_flight ;
+                      isocat:DC-2263 :arg_left ] ;
   lemon:sense [ lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightDeparture>;
-                                 lemon:subjOfProp :arg_leg ;
+                                 lemon:subjOfProp :arg_flight ;
                                  lemon:objOfProp  :arg_departure ] ,
                                [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>;
                                  lemon:subjOfProp :arg_departure ;
@@ -446,17 +448,14 @@
   lemon:sense [ lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flight>;
                                  lemon:subjOfProp :arg_trip ;
                                  lemon:objOfProp  :arg_flight ] ,
-                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#leg>;
-                                 lemon:subjOfProp :arg_flight ;
-                                 lemon:objOfProp  :arg_leg ] ,
                                [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightdeparture>;
-                                 lemon:subjOfProp :arg_leg ;
+                                 lemon:subjOfProp :arg_flight ;
                                  lemon:objOfProp  :arg_departure ] ,
                                [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>;
                                  lemon:subjOfProp :arg_departure ;
                                  lemon:objOfProp  :arg_source ] ,
                                [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightArrival>;
-                                 lemon:subjOfProp :arg_leg ;
+                                 lemon:subjOfProp :arg_flight ;
                                  lemon:objOfProp  :arg_arrival ] ,
                                [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>;
                                  lemon:subjOfProp :arg_arrival ;
@@ -472,30 +471,29 @@
 :arg_airport     lemon:marker [ lemon:canonicalForm [ lemon:writtenRep "at"@en ] ] .
 
 
-:test a lemon:LexicalEntry ;
-  isocat:DC-1345 isocat:NonExistingPos ;
-  lemon:canonicalForm [ lemon:writtenRep "test"@en ] ;
-  lemon:synBehavior [ rdf:type lexinfo:NonExistingFrame ; 
-                      isocat:DC-2261 :arg_test ] ;
-  lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightArrival>;
-                lemon:subjOfProp :arg_speaker ; 
-                lemon:objOfProp  :arg_test ;
-                lemon:propertyDomain <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#Country> ;
-                lemon:propertyRange  <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#City> ] . 
-
 :from a lemon:LexicalEntry;
       isocat:DC-1345 isocat:DC-1366 ;
-      lemon:synBehavior [ rdf:type lexinfo:PrepositionFrame ] ; 
+      lemon:synBehavior [ rdf:type lexinfo:PrepositionFrame ;
+                          isocat:DC-4638 arg_from ] ; 
       lemon:canonicalForm [ lemon:writtenRep "from"@en ] ;
-      lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#> ;
-                    lemon:subjOfProp :arg_arrival ;
-                    lemon:objOfProp  :arg_destination ] .
+      lemon:sense [ lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightdeparture>;
+                                 lemon:subjOfProp :arg_flight ;
+                                 lemon:objOfProp  :arg_departure ] ,
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>;
+                                 lemon:subjOfProp :arg_departure ;
+                                 lemon:objOfProp  :arg_from ] ] .
 
-:to 
-
-:by_way_of
-
-:in
+:to a lemon:LexicalEntry;
+      isocat:DC-1345 isocat:DC-1366 ;
+      lemon:synBehavior [ rdf:type lexinfo:PrepositionFrame ;
+                          isocat:DC-4638 arg_to ] ; 
+      lemon:canonicalForm [ lemon:writtenRep "from"@en ] ;
+      lemon:sense [lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightArrival>;
+                                 lemon:subjOfProp :arg_flight ;
+                                 lemon:objOfProp  :arg_arival ] ,
+                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>;
+                                 lemon:subjOfProp :arg_arrival ;
+                                 lemon:objOfProp  :arg_to ] ] .
 
 
 :first isocat:DC-1345 isocat:DC-1230 ;

@@ -232,7 +232,7 @@
 		<rdfs:label xml:lang="it">arrivo del volo</rdfs:label>
         <rdfs:comment>Arrival of a flight</rdfs:comment>
         <rdfs:range rdf:resource="&Travel-Domain;Arrival"/>
-        <rdfs:domain rdf:resource="&Travel-Domain;Leg"/>
+        <rdfs:domain rdf:resource="&Travel-Domain;Flight"/>
         <rdfs:subPropertyOf rdf:resource="&Travel-Domain;arrival"/>
     </owl:ObjectProperty>
     
