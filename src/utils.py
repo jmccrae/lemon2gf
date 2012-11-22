@@ -27,8 +27,9 @@ def toGF(string):
 def print_signature(signature):
        sig  = '\n----------------------------\n'
        sig += '\nDomain: ' + signature['name'] + '\n'
-       sig += '\nProposition: ' + str(signature['proposition'])
-       sig += '\nEntity:      ' + str(signature['entity'])
+       if signature.has_key('proposition') and signature.has_key('entity'):
+          sig += '\nProposition: ' + str(signature['proposition'])
+          sig += '\nEntity:      ' + str(signature['entity'])
        sig += '\n\nPredefined: \n' 
        for p in signature['predefined']: sig += str(p) + '\n'
        sig += '\nCategories:\n'

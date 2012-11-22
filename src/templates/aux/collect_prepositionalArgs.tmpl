@@ -42,9 +42,11 @@
 ##
 #set $adv = []
 #for $p in $required_pargs
+ #if $p.has_key('marker')
  #set $marker = dict(long=$p.marker,short=$p.marker.replace(' ',''))
  $ms.append($marker)
  $adv.append( '(Syntax'+str($lang)+'.mkAdv ' + str($marker.short) + '_Prep (mkNP ' + str($p.name) + '))' )
+ #end if
 #end for
 #if $adv
  $advs.append($adv)
@@ -56,11 +58,13 @@
   #for $comb in $combs
    #set $new_adv = $adv[:]
    #for $c in $comb
+   #if $c.has_key('marker')
     #set $marker = dict(long=$c.marker,short=$c.marker.replace(' ',''))
     #if not $marker in $ms
      $ms.append($marker)
     #end if
     $new_adv.append( '(Syntax'+str($lang)+'.mkAdv ' + str($marker.short) + '_Prep (mkNP ' + str($c.name) + '))' )
+   #end if
    #end for
    $advs.append($new_adv[:])
   #end for

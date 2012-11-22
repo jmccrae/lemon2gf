@@ -9,9 +9,7 @@ from utils import print_signature
 
 
 gf_libs   = dict()
-signature = dict( proposition  = dict(name='Proposition'), 
-                  entity       = dict(name='Entity'),
-                  predefined   = [ dict(name='Thing',   lincat='CN'),
+signature = dict( predefined   = [ dict(name='Thing',   lincat='CN'),
                                    dict(name='String',  lincat='CN'),
                                    dict(name='Integer', lincat='CN'),
                                    dict(name='Decimal', lincat='CN'),
@@ -35,21 +33,27 @@ def run(argv):
     logging.getLogger('').addHandler(console)
 
     __init__()
-    verbose = False
+    standalone = True
     tbox = None
     abox = None
     lexica = []
 
-    try: opts,args = getopt.getopt(argv,"hl:t:a:",["help"]) 
+    try: opts,args = getopt.getopt(argv,"hl:t:a:",["help","apollo"]) 
     except getopt.GetoptError: __usage__(); sys.exit()
 
+    if not opts: __usage__(); sys.exit()
     for opt,arg in opts:
+        if opt == '--apollo': standalone = False
         if opt in ('-h','--help'): __usage__(); sys.exit()
         elif opt == '-t': tbox = arg
         elif opt == '-a': abox = arg
         elif opt == '-l': lexica.append(arg)
 
-    __generateGF__(signature,tbox,abox,lexica)
+    if standalone:
+       signature['proposition'] = dict(name='Proposition')
+       signature['entity']      = dict(name='Entity')
+
+    __generateGF__(signature,tbox,abox,lexica,standalone)
 
 
 def __init__():
@@ -60,7 +64,7 @@ def __init__():
            for l in ls[0:4]: gf_libs[l.strip()] = ls[4].strip()
 
 
-def __generateGF__(signature,tbox,abox,lexica):
+def __generateGF__(signature,tbox,abox,lexica,standalone):
 
     domain_name = ''
 
@@ -69,12 +73,12 @@ def __generateGF__(signature,tbox,abox,lexica):
 
     if not abox is None: convert_abox(abox,domain_name)
 
-    if lexica: convert_lexica(signature,lexica,gf_libs)
+    if lexica: convert_lexica(signature,lexica,gf_libs,standalone)
     else: logging.warning('No lexicon specified.')
     
     logging.info('Signature:' + print_signature(signature))
 
-    render_tbox(signature)
+    render_tbox(signature,standalone)
     
     logging.info('Done.')
 
@@ -85,6 +89,8 @@ def __usage__():
     print "(-a <ontology_abox>)  # the ontology instances (an OWL/RDF file)" 
     print "(-l <lexicon>)        # the lexicon (a lemon RDF file)"
     print "                      # (for several lexica, mark each one with the -l flag)" 
+    print "(--apollo)            # generates a grammar that extends Core"
+    print "                        (if this option is not specified, a standalone lexicon is generated)"
 
 
 

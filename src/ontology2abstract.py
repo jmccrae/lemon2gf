@@ -17,7 +17,10 @@ def convert_tbox(signature,tbox):
     # collect classes
     for c in owl.AllClasses(g):
         class_s = frag_uri(str(c.identifier))
-        for d in signature['predefined'] + [signature['proposition'],signature['entity']]:
+        to_check = signature['predefined']
+        if signature.has_key('proposition') and signature.has_key('entity'):
+           to_check = to_check + [signature['proposition'],signature['entity']]
+        for d in to_check:
             if d['name'] == class_s: d['name'] = d['name']+'_p'
         signature['categories'].append( {'name': "mk"+class_s, 'type': class_s} )
  
@@ -32,9 +35,11 @@ def convert_tbox(signature,tbox):
         signature['functions'].append(p_dict)
 
 
-def render_tbox(signature):
+def render_tbox(signature,standalone):
 
-    abstract_in  = open('templates/abstract.tmpl','r').read()
+    if standalone: tmpl = 'templates/abstract_standalone.tmpl'
+    else:          tmpl = 'templates/abstract.tmpl'
+    abstract_in  = open(tmpl,'r').read()
     out_file = '../test/out/'+signature['name']+'.gf'
     abstract_out = open(out_file,'w')
     t = Template(abstract_in,searchList=[signature])
@@ -42,5 +47,7 @@ def render_tbox(signature):
     abstract_out.close()
     logging.info('Abstract syntax (T-Box): '+ out_file)
 
+
 def convert_abox(abox,log):
     logging.info('Skipping A-Box... (Not implemented yet.)')
+

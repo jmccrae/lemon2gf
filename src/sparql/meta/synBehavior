@@ -1,54 +1,78 @@
-SELECT ?blank ?frame ?subject ?directObject ?indirectObject ?prepositionalObject ?prepositionalAdjunct ?possessiveAdjunct WHERE { #slurp 
+SELECT ?frame ?subject ?directObject ?indirectObject ?prepositionalObject ?prepositionalAdjunct ?possessiveAdjunct WHERE { #slurp 
 ## 
  <\$uri> <http://www.monnet-project.eu/lemon#synBehavior> ?blank .
  ?blank a ?frame . #slurp
 ##   
  OPTIONAL { #slurp
+ #if len($subject) == 1
+ ?blank <$subject[0]> ?subject .
+ #else
  #set $sep = ''
  #for $p in $subject
  $sep { ?blank <$p> ?subject . } #slurp
  #set $sep = ' UNION ' 
  #end for
+ #end if
  } #slurp
 ##
  OPTIONAL { #slurp
+ #if len($directObject) == 1
+ ?blank <$directObject[0]> ?directObject .
+ #else
  #set $sep = ''
  #for $p in $directObject
  $sep { ?blank <$p> ?directObject . } #slurp
  #set $sep = ' UNION ' 
  #end for
+ #end if
  } #slurp
 ##
  OPTIONAL { #slurp
+ #if len($indirectObject) == 1
+ ?blank <$indirectObject[0]> ?indirectObject .
+ #else
  #set $sep = ''
  #for $p in $indirectObject
  $sep { ?blank <$p> ?indirectObject . } #slurp
  #set $sep = ' UNION ' 
  #end for
+ #end if
  } #slurp
 ##
  OPTIONAL { #slurp
+ #if len($prepositionalObject) == 1
+ ?blank <$prepositionalObject[0]> ?prepositionalObject .
+ #else
  #set $sep = ''
  #for $p in $prepositionalObject
  $sep { ?blank <$p> ?prepositionalObject . } #slurp
  #set $sep = ' UNION ' 
  #end for
+ #end if
  } #slurp
 ##
  OPTIONAL { #slurp
+ #if len($prepositionalAdjunct) == 1
+ ?blank <$prepositionalAdjunct[0]> ?prepositionalAdjunct .
+ #else
  #set $sep = ''
  #for $p in $prepositionalAdjunct
  $sep { ?blank <$p> ?prepositionalAdjunct . } #slurp
  #set $sep = ' UNION ' 
  #end for
+ #end if
  } #slurp
 ##
  OPTIONAL { #slurp
+ #if len($possessiveAdjunct) == 1
+ ?blank <$possessiveAdjunct[0]> ?possessiveAdjunct .
+ #else
  #set $sep = ''
  #for $p in $possessiveAdjunct
  $sep { ?blank <$p> ?possessiveAdjunct . } #slurp
  #set $sep = ' UNION ' 
  #end for
+ #end if
  } #slurp
 ##
 }

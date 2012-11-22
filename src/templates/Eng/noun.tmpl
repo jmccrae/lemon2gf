@@ -27,7 +27,7 @@ $set global $forms = c'"$singular"'
 #include "templates/aux/collect_prepositionalArgs.tmpl"
 #include "templates/Eng/collect_possessiveAdjuncts.tmpl"
 ##
-#if $syn.has_key('frame') 
+#if $syn.has_key('frame') and $syn.frame != 'Frame'
 #set $path = ("templates/"+$lang+"/"+$syn.frame).encode('ascii')
 #else
 #set $path = ("templates/"+$lang+"/NounFrame").encode('ascii')

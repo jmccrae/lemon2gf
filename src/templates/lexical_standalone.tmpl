@@ -1,14 +1,19 @@
 
-concrete Lexical$name$lang of $name = Core$lang ** open Syntax$lang, Paradigms$lang in {
+concrete Lexical$name$lang of $name = open Syntax$lang, Paradigms$lang in {
 
 lincat
+   $signature.proposition.name = $signature.proposition.lincat;
+   $signature.entity.name = $signature.entity.lincat;
 
   #for $pre in $signature.predefined
    $pre.name = $pre.lincat;
   #end for
 
   #for $c in $signature.categories
-   $c.type = <> ;
+   $c.type = $c.lincat ;
+  #end for
+  #for $c in $signature.funcats
+   $c.type = $c.lincat ;
   #end for
 
 lin

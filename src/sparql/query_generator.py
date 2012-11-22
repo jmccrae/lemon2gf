@@ -25,7 +25,6 @@ def __instantiate_queries__():
            f_out.write(str(t))
 
 def run():
-    # if sparql/generated/ is empty or files in sparql/meta were changed:
     __instantiate_queries__()
 
 

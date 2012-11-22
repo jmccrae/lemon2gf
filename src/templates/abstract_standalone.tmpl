@@ -1,23 +1,29 @@
-abstract $name = Core ** {
+abstract $name = {
 
  cat 
+
+   $proposition.name;
+   $entity.name;
 
   #for $pre in $predefined
    $pre.name;
   #end for
 
+  #for $c in $categories 
+   $c.type; 
+  #end for
+  #for $c in $funcats
+   $c.type;
+  #end for
+
  fun
    
   #for $c in $categories
-   $c.type : Kind; 
-  #end for
-
-  #for $c in $categories
-   $c.name : (k : Kind) -> Class k; 
+   $c.name : $c.type; 
   #end for
 
   #for $c in $funcats
-   $c.name : $c.domain -> Kind;
+   $c.name : $c.domain -> $c.type;
   #end for
 
   #for $p in $functions
@@ -30,8 +36,8 @@ abstract $name = Core ** {
 #else
 #set $range = $p.range + ' -> '
 #end if
-##
-   $p.name : $p.domain -> $range Proposition;
-##
+
+   $p.name : $p.domain -> $range $proposition.name;
+
   #end for
 }

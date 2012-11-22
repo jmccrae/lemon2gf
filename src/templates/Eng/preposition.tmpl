@@ -1,0 +1,21 @@
+##
+#set global $ref = $ref
+#set global $name = $canonicalForm.replace(' ','')
+##
+##
+#set global $forms = c'"$canonicalForm"'
+##
+##
+#for $syn in $synBehaviors
+#set global $syn = $syn
+##
+#if $syn.has_key('frame') and $syn.frame != 'Frame'
+#set $path = ("templates/"+$lang+"/"+$syn.frame).encode('ascii')
+#else
+#set $path = ("templates/"+$lang+"/PrepositionFrame").encode('ascii')
+#end if
+##
+#include $path
+##
+#end for
+##

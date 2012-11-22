@@ -26,7 +26,7 @@ $set global $forms = c'"$present" "$past"'
 ##
 #include "templates/aux/collect_prepositionalArgs.tmpl"
 ##
-#if $syn.has_key('frame') 
+#if $syn.has_key('frame') and $syn.frame != 'Frame'
 #set $path = ("templates/"+$lang+"/"+$syn.frame).encode('ascii')
 #else
 #set $path = ("templates/"+$lang+"/VerbFrame").encode('ascii')

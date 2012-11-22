@@ -2,8 +2,8 @@
 * A-Box (pos=properNoun)
 * Templates for: ditransitive verbs, prepositions, adjectives
 * Templates for other languages
-* make sure and document that templates cover John's lemon patterns
 * allow for lists of singular and plural values
+* markers are currently assumed to be prepositions, extend this to cases
 * filter opers for those already defined in resource grammar
 
 

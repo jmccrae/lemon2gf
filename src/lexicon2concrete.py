@@ -18,13 +18,18 @@ pos_or_frame_not_found_warning = lambda x: "No template for part of speech or fr
 pos_not_found_warning = lambda x: "Unknown part of speech: "+x
 
 # Query constructor
-q = lambda x,y: str(Template(file='sparql/'+x+'.sparql',searchList=[{'uri':y}]))
+def q(x,y):
+    f = 'sparql/'+x+'.sparql'
+    if exists(f):
+       return str(Template(file=f,searchList=[{'uri':y}]))
+    else:
+       return "FNF"
 
 # default linearization categories
 lincats = construct_lincats()
 
 
-def convert_lexica(signature,lexica,gf_libs):
+def convert_lexica(signature,lexica,gf_libs,standalone):
 
   for lexicon_file in lexica:
     logging.info('Converting: ' + lexicon_file)
@@ -59,17 +64,20 @@ def convert_lexica(signature,lexica,gf_libs):
         logging.info('Concrete syntax (top level): '+ out_file)
 
         # lexicon -> Lexical$domain_name$language.gf
-        t = Template(file='templates/lexical.tmpl')
+        if standalone: tmpl = 'templates/lexical_standalone.tmpl'
+        else:          tmpl = 'templates/lexical.tmpl'
+        t = Template(file=tmpl)
         t.name = signature['name']
         t.lang = language
 
-        records = __construct_records__(g,lexicon,signature)       
+        records = __construct_records__(g,lexicon,signature)
 
         logging.info('Records:' + print_records(records))
 
-        for c in signature['categories']+signature['funcats']: c['lincat'] = lincats['category']
-        signature['proposition']['lincat'] = print_lincat(lincats['proposition'])
-        signature['entity']['lincat']      = print_lincat(lincats['entity'])
+        if standalone:
+           for c in signature['categories']+signature['funcats']: c['lincat'] = print_lincat(lincats['category'])
+           signature['proposition']['lincat'] = print_lincat(lincats['proposition'])
+           signature['entity']['lincat']      = print_lincat(lincats['entity'])
 
         t.signature = signature
 
@@ -80,6 +88,11 @@ def convert_lexica(signature,lexica,gf_libs):
 
             l = dict(ref=r['reference'],lin=[])
             args = ''
+            if not standalone:
+               for c in signature['categories']:
+                   if r['reference'] == c['name']:
+                      args += '_'
+                      break
             if r.has_key('subjOfProp') and r.has_key('objOfProp'): 
                args += r['subjOfProp'] + ' '
                if type(r['objOfProp']) == list:
@@ -234,7 +247,6 @@ def __add_lexical_information__(graph,senses):
                               b[k] = a                    
                 # add syn behavior
                 extended_e['synBehaviors'].append(b)                
-            # TODO decompositions
 
             # put everything together again
             extended_entries.append(extended_e)
@@ -251,8 +263,10 @@ def __read_pos_map__():
     return pos_map
 
 def __queryupdate__(graph,d,query,string,fun):
-    j = graph.query(q(query,string)).serialize(format='json')
-    for b in get_bindings(j,fun): d.update(b)
+    to_query = q(query,string)
+    if (to_query != "FNF"):
+        j = graph.query(to_query).serialize(format='json')
+        for b in get_bindings(j,fun): d.update(b)
 
 
 
