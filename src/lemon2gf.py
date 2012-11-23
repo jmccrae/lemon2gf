@@ -1,6 +1,6 @@
 
 import sys
-import getopt
+import argparse
 import logging
 
 from ontology2abstract import *
@@ -21,7 +21,20 @@ signature = dict( predefined   = [ dict(name='Thing',   lincat='CN'),
                  )
 
 
-def run(argv):
+def run():
+
+    p = argparse.ArgumentParser(description='lemon2gf')
+    p.add_argument('-t', action='store',  dest='tbox', 
+                   help='path to the ontology schema (an OWL/RDF file)')
+    p.add_argument('-a', action='store',  dest='abox', 
+                    help='path to the ontology instances (an OWL/RDF file)')
+    p.add_argument('-l', action='append', dest='lexica', default=[],
+                    help='path to the lexicon (a lemon RDF file)')
+    p.add_argument('--apollo', action='store_false', dest='standalone', default=True,
+                    help='switches from a standalone grammar to one that extends Core (requires apollo)')
+
+    args = p.parse_args()
+
 
     logging.basicConfig(filename='../test/out/lemon2gf.log',
                         filemode='w', 
@@ -33,27 +46,12 @@ def run(argv):
     logging.getLogger('').addHandler(console)
 
     __init__()
-    standalone = True
-    tbox = None
-    abox = None
-    lexica = []
 
-    try: opts,args = getopt.getopt(argv,"hl:t:a:",["help","apollo"]) 
-    except getopt.GetoptError: __usage__(); sys.exit()
-
-    if not opts: __usage__(); sys.exit()
-    for opt,arg in opts:
-        if opt == '--apollo': standalone = False
-        if opt in ('-h','--help'): __usage__(); sys.exit()
-        elif opt == '-t': tbox = arg
-        elif opt == '-a': abox = arg
-        elif opt == '-l': lexica.append(arg)
-
-    if standalone:
+    if args.standalone:
        signature['proposition'] = dict(name='Proposition')
        signature['entity']      = dict(name='Entity')
 
-    __generateGF__(signature,tbox,abox,lexica,standalone)
+    __generateGF__(signature,args.tbox,args.abox,args.lexica,args.standalone)
 
 
 def __init__():
@@ -83,17 +81,7 @@ def __generateGF__(signature,tbox,abox,lexica,standalone):
     logging.info('Done.')
 
 
-def __usage__():
-    print "\nlemon2gf expects the following arguments:"
-    print " -t <ontology_tbox>   # the ontology schema (an OWL/RDF file)" 
-    print "(-a <ontology_abox>)  # the ontology instances (an OWL/RDF file)" 
-    print "(-l <lexicon>)        # the lexicon (a lemon RDF file)"
-    print "                      # (for several lexica, mark each one with the -l flag)" 
-    print "(--apollo)            # generates a grammar that extends Core"
-    print "                        (if this option is not specified, a standalone lexicon is generated)"
-
-
 
 ## MAIN #########
 
-run(sys.argv[1:])
+run()
