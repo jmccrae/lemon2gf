@@ -5,11 +5,11 @@
 #set $poss = $syn.possessiveAdjunct
   #if type($poss) == list
    #for $p in $poss
-    $poss_advs.append( '(Syntax'+str($lang)+'.mkAdv possess_Prep (mkNP ' + str($poss.name) + '))' )
+    $poss_advs.append( '(Paradigms'+str($lang)+'.mkAdv possess_Prep (mkNP ' + str($poss.name) + '))' )
     $poss_nps.append( 'mkNP (GenNP s) sgNum ' + str($poss.name) )
    #end for
   #else
-   $advs.append( '(Syntax'+str($lang)+'.mkAdv possess_Prep (mkNP ' + str($syn.possessiveAdjunct.name) + '))' )
+   $advs.append( '(Paradigms'+str($lang)+'.mkAdv possess_Prep (mkNP ' + str($syn.possessiveAdjunct.name) + '))' )
    $poss_nps.append( 'mkNP (GenNP s) sgNum ' + str($syn.possessiveAdjunct.name) )
   #end if
 #end if

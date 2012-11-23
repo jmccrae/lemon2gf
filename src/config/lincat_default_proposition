@@ -1,7 +1,7 @@
-noun_pp : CN
-active : Cl
+vp : VP
+cl : Cl
 passive : Cl
 passive_by : Cl
 object_slash : ClSlash
-subject_slash: VP 
+noun_pp : CN 
 adv : Adv

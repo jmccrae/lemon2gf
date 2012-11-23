@@ -1,6 +1,6 @@
 lin
-   active = mkCl (mkNP $syn.subject.name) (mkVP ${name}_V) 
-   subject_slash = mkVP ${name}_V 
+   cl = mkCl (mkNP $syn.subject.name) (mkVP ${name}_V) 
+   vp = mkVP ${name}_V 
 
 oper
    ${name}_V : V;

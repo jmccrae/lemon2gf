@@ -88,11 +88,6 @@ def convert_lexica(signature,lexica,gf_libs,standalone):
 
             l = dict(ref=r['reference'],lin=[])
             args = ''
-            if not standalone:
-               for c in signature['categories']:
-                   if r['reference'] == c['name']:
-                      args += '_'
-                      break
             if r.has_key('subjOfProp') and r.has_key('objOfProp'): 
                args += r['subjOfProp'] + ' '
                if type(r['objOfProp']) == list:
@@ -109,11 +104,13 @@ def convert_lexica(signature,lexica,gf_libs,standalone):
                 except (KeyError, IOError, OSError):
                    logging.warning(pos_or_frame_not_found_warning(str(e)))
 
-                __split_lin_oper__(t_pos,l,opers) 
+                __split_lin_oper__(t_pos,l,opers,'Lexical'+t.name+t.lang+'.') 
 
             linearizations.append(l)
+
         __contract_lin_records__(linearizations)
         __fill_lin_records__(linearizations,signature)
+        
         t.linearizations = linearizations
         t.opers = opers
 
@@ -370,7 +367,7 @@ def __construct_reference_chain__(sense,signature):
 
 ## FUNCTIONS ON LINEARIZATIONS
 
-def __split_lin_oper__(t_pos,l,opers):
+def __split_lin_oper__(t_pos,l,opers,prefix):
     flag = 'off'
     partial = ''
     for line in t_pos.split('\n'):
@@ -394,6 +391,18 @@ def __split_lin_oper__(t_pos,l,opers):
                  partial += '\n' + line
     l['lin']  = filter(lambda x: x != '',l['lin'])
     opers     = filter(lambda x: x != '',opers)
+    # avoid name clashes with resource grammars
+    for lin in l['lin']: 
+        for oper in opers:
+            m = re.match('^\s*(\w+_\w+)\s?:\s?\w+\s*;',oper)
+            if m: 
+               safe_values = []
+               for v in lin['value']: 
+                   mv = re.match('.*[^A-Za-z0-9\.](\w+_\w+)\W.*',v)
+                   if mv: safe_values.append(v.replace(mv.group(1),prefix+mv.group(1)))
+                   else:  safe_values.append(v)
+               lin['value'] = safe_values
+
 
 def __contract_lin_records__(linearizations):
     for lin in linearizations:

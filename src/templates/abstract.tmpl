@@ -1,37 +1,36 @@
 abstract $name = Core ** {
 
- cat 
-
-  #for $pre in $predefined
-   $pre.name;
-  #end for
 
  fun
+
+  #for $pre in $predefined
+   $pre.name : Kind;
+  #end for
    
   #for $c in $categories
    $c.type : Kind; 
   #end for
 
   #for $c in $categories
-   $c.name : (k : Kind) -> Class k; 
+   $c.name : Class $c.type; 
   #end for
 
   #for $c in $funcats
-   $c.name : $c.domain -> Kind;
+   $c.name : Class $c.domain -> Kind;
   #end for
 
   #for $p in $functions
 #if type($p.range) == list
 #set $range = ''
  #for $r in $p.range
- #set $range = $range + str($r) + ' -> '
+ #set $range += 'Class ' + str($r) + ' -> '
  #end for
  #set $range = $range.strip()
 #else
-#set $range = $p.range + ' -> '
+#set $range = 'Class ' + $p.range + ' ->'
 #end if
 ##
-   $p.name : $p.domain -> $range Proposition;
+   $p.name : Class $p.domain -> $range Proposition;
 ##
   #end for
 }

@@ -3,14 +3,14 @@
 ##
 #set $vp_lins = $aux.get_lins($advs,'mkVP','(mkVP '+$name+'_V)')
 ##
-#set $active         = $aux.build_lins($vp_lins,'mkCl (mkNP ' + $syn.subject.name +') ')
-#set $subject_slash  = $aux.build_lins($vp_lins,'')
+#set $cl = $aux.build_lins($vp_lins,'mkCl (mkNP ' + $syn.subject.name +') ')
+#set $vp = $aux.build_lins($vp_lins,'')
 ##
 
 lin
-  active = $active
+  cl = $cl
+  vp = $vp
 ## passive, object_slash, 
-  subject_slash = $subject_slash
 
 oper
    ${name}_V : V;

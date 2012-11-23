@@ -45,7 +45,7 @@
  #if $p.has_key('marker')
  #set $marker = dict(long=$p.marker,short=$p.marker.replace(' ',''))
  $ms.append($marker)
- $adv.append( '(Syntax'+str($lang)+'.mkAdv ' + str($marker.short) + '_Prep (mkNP ' + str($p.name) + '))' )
+ $adv.append( '(Paradigms'+str($lang)+'.mkAdv ' + str($marker.short) + '_Prep (mkNP ' + str($p.name) + '))' )
  #end if
 #end for
 #if $adv
@@ -63,7 +63,7 @@
     #if not $marker in $ms
      $ms.append($marker)
     #end if
-    $new_adv.append( '(Syntax'+str($lang)+'.mkAdv ' + str($marker.short) + '_Prep (mkNP ' + str($c.name) + '))' )
+    $new_adv.append( '(Paradigms'+str($lang)+'.mkAdv ' + str($marker.short) + '_Prep (mkNP ' + str($c.name) + '))' )
    #end if
    #end for
    $advs.append($new_adv[:])

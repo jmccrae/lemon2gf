@@ -1,14 +1,15 @@
+--# -path=.:prelude:present
 
 concrete Lexical$name$lang of $name = Core$lang ** open Syntax$lang, Paradigms$lang in {
 
 lincat
 
   #for $pre in $signature.predefined
-   $pre.name = $pre.lincat;
+   $pre.name = <>;
   #end for
 
   #for $c in $signature.categories
-   $c.type = <> ;
+   $c.type = <>;
   #end for
 
 lin
