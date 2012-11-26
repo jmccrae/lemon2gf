@@ -337,13 +337,7 @@
                                  lemon:objOfProp  :arg_departure ] ,
                                [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>;
                                  lemon:subjOfProp :arg_departure ;
-                                 lemon:objOfProp  :arg_source ] ] ,
-              [ lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightDeparture>;
-                                 lemon:subjOfProp :arg_leg ;
-                                 lemon:objOfProp  :arg_departure ] ,
-                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#airport>;
-                                 lemon:subjOfProp :arg_departure ;
-                                 lemon:objOfProp  :arg_source ] ]  . 
+                                 lemon:objOfProp  :arg_source ] ] . 
 
 :leave a lemon:LexicalEntry ;
   isocat:DC-1345 isocat:DC-1424 ;
@@ -489,11 +483,11 @@
                           isocat:DC-4638 arg_to ] ; 
       lemon:canonicalForm [ lemon:writtenRep "from"@en ] ;
       lemon:sense [lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightArrival>;
-                                 lemon:subjOfProp :arg_flight ;
-                                 lemon:objOfProp  :arg_arival ] ,
-                               [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>;
-                                 lemon:subjOfProp :arg_arrival ;
-                                 lemon:objOfProp  :arg_to ] ] .
+                                    lemon:subjOfProp :arg_flight ;
+                                    lemon:objOfProp  :arg_arrival ] ,
+                                  [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>;
+                                    lemon:subjOfProp :arg_arrival ;
+                                    lemon:objOfProp  :arg_to ] ] .
 
 
 :first isocat:DC-1345 isocat:DC-1230 ;
