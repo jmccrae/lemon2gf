@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>lemon2gf and beyond</title>
+    <meta name="author" content="Christina Unger" />
+
+<!--    <link href='http://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet' type='text/css' /> -->
+    <link href='http://fonts.googleapis.com/css?family=Asap:400,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Quicksand:400,700' rel='stylesheet' type='text/css' />
+
+    <link href="lemon2gf.css" rel="stylesheet" />
+</head>
+
+<body class="impress-not-supported">
+
+<div class="fallback">
+Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.
+For the best experience please use the latest <b>Chrome</b> or <b>Firefox</b> browser.
+</div>
+
+<div id="impress">
+
+  <div id="title" class="step" data-x="0" data-y="-400" data-scale="1.4">
+        <h1>lemon2gf <sup>*</sup></h1>
+        <h2>From lexica to grammars <br />and applications</h2>
+        <p> &nbsp; </p>
+        <p>
+        <span class="bg">Christina Unger</span><br /><span class="bg">AG Semantic Computing, Bielefeld University</span></p>
+        <!--<div class="img"><img src="portdial.png" width="100px" border="0" /></div>-->
+        <span class="footnote"><p>&nbsp;<br /><sup>*</sup>This work is funded by the EU project PortDial (FP7-296170).</p></span>
+  </div>
+
+  <div id="overview" class="step" data-x="6000" data-y="-1200" data-scale="20">
+        <table>
+        <tr>
+        <td width="500"><h1>Overview</h1></td>
+        <td>
+         <ol>
+         <li> Motivation </li>
+         <li> lemon and GF </li>
+         <li> Mapping lemon to GF </li>
+         <li> Using grammars for<br /> QA and dialog </li> 
+         <li> Test cases </li>
+        </ol>
+        </td>
+        </tr>
+        </table>
+<!--        <p>
+        
+        </p>
+-->
+  </div>
+
+  <div id="section1" class="step" data-x="2500" data-y="-400" data-scale="1.4">
+  <h1>Motivation</h1>
+  <p>&nbsp;</p>
+  <p>
+  Imagine we have <b>a domain ontology</b> and we want<br />
+  a <b>natural language interface</b> to domain data.<br />&nbsp;
+  <ul>
+  <li>Question answering system</li>
+  <li>Dialog system</li>
+  </ul>
+  </p>
+  <p>&nbsp;</p>
+  <p>So we need grammars.</p>
+  </div>
+
+  <div id="section2" class="step" data-x="4500" data-y="-400" data-scale="1.4">
+  <h2>Fortunately we have</h2>
+  <h1>lemon and GF</h1>
+  </div>
+
+  <div id="ontologylexica" class="step" data-x="4500" data-y="700" data-scale="1.4">
+
+  <h2><img src="lemon.png" width="56px" border="0" />&nbsp;&nbsp;lemon (lexicon model for ontologies)</h2>
+  <h3>is a meta-model for describing ontology lexica with RDF</h3>
+
+  <p> &nbsp; </p>
+   
+  A <i>lemon</i> lexicon enriches an ontology with linguistic information, in particular specifies how ontology concepts
+  correspond to natural language expressions.
+  </div>
+
+  <div id="example_lexicalentry" class="step" data-x="4500" data-y="1600" data-scale="1.4">
+  <img src="lexicalEntry.png" width="1000" border="0" />
+  </div>
+
+  <div id="semanticsbyreference" class="step" data-x="4700" data-y="2000" data-z="-100" data-scale="1">
+  <p> &nbsp; </p>
+  <h3>Semantics by reference (McCrae et al. 2012)</h3>
+
+  Lexicon and ontology are clearly separated. The meaning of lexical entries is
+  specified by pointing to elements in the ontology.
+  </div>
+
+  <div id="grammargeneration" class="step" data-x="4700" data-y="2200" data-z="-100" data-scale="1">
+  Ontology lexica allow the generation of ontology-specific
+  grammars, i.e. grammars with representations aligned to the
+  ontology.
+  </div>
+
+  <div id="example_syntax" class="step" data-x="4500" data-y="1600" data-scale="1.4">
+  <img src="lexicalEntry_syntax.png" width="1000" border="0" />
+  </div>
+
+  <div id="example_semantics" class="step" data-x="4500" data-y="1600" data-scale="1.4">
+  <img src="lexicalEntry_semantics.png" width="1000" border="0" />
+  </div>
+
+
+
+  <div id="gf" class="step" data-x="4500" data-y="3000" data-scale="1.4">
+  <h2>Grammatical Framework</h2>
+  <p> &nbsp; </p>
+<!--  <h3>Linguistics</h3>
+  <p> &nbsp; </p>
+-->
+  <ul>
+  <li>grammar formalism equivalent to Parallel Multiple Context-free Grammars, with
+       polynomial parsing</li>
+<!--  </ul>
+  <p> &nbsp; </p>
+  <h3>Computer science</h3>
+  <p> &nbsp; </p>
+  <ul>
+-->
+  <li>a special-purpose functional programming language for writing multilingual grammars related by an interlingua</li>
+<!--  <li>a framework for multi-source multi-target compiler/decompilers</li> -->
+  </ul>
+  </div>
+
+  <div id="example_gf" class="step" data-x="4400" data-y="3800" data-scale="1.4">
+  <img src="abstract_concrete.png" width="1100px" border="0" />
+  </div>
+
+  <div id="example_gf_abstract" class="step" data-x="4700" data-y="3760" data-z="-300" data-scale="1">
+  <p><b>abstract</b> Travel <b>= {</b></p>
+  <p>
+      &nbsp;&nbsp;&nbsp;<b>cat</b><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flight ; <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Airline ; <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Statement ; 
+  </p>
+  <p>
+      &nbsp;&nbsp;&nbsp;<b>fun</b><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PanAm&nbsp;&nbsp; : Airline ; <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PA-47&nbsp;&nbsp; : Flight ; <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;airline : Flight -> Airline -> Statement ;
+  </p>
+  <p><b>}</b></p>
+  </div>
+
+  <div id="example_gf_concreteEng" class="step" data-x="4050" data-y="4250" data-z="-200" data-scale="1">
+  <p><b>concrete</b> TravelEng <b> of </b>Travel</b> = {</b></p>
+  <p>
+      &nbsp;&nbsp;&nbsp;<b>lincat</b><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flight, Airline, Statement = Str ; 
+  </p>
+  <p>
+      &nbsp;&nbsp;&nbsp;<b>lin</b><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PanAm = "Pan American" ; <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PA-47 = "PA-47" ; <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;airline f a = a ++ "operates" ++ f ;
+  </p>
+  <p><b>}</b></p>
+  </div>
+
+  <div id="example_gf_concreteGer" class="step" data-x="4700" data-y="4250" data-z="-200" data-scale="1">
+  <p><b>concrete</b> TravelGer <b> of </b>Travel</b> = {</b></p>
+  <p>
+      &nbsp;&nbsp;&nbsp;<b>lincat</b><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flight, Airline, Statement = Str ; 
+  </p>
+  <p>
+      &nbsp;&nbsp;&nbsp;<b>lin</b><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PanAm = "Pan American" ; <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PA-47 = "PA-47" ; <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;airline f a = a ++ "betreibt" ++ f ;
+  </p>
+  <p><b>}</b></p>
+  </div>
+
+  <div id="example_gf_concreteSwe" class="step" data-x="5400" data-y="4250" data-z="-200" data-scale="1">
+  <p><b>concrete</b> TravelSwe <b> of </b>Travel</b> = {</b></p>
+  <p>
+      &nbsp;&nbsp;&nbsp;<b>lincat</b><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Flight, Airline, Statement = Str ; 
+  </p>
+  <p>
+      &nbsp;&nbsp;&nbsp;<b>lin</b><br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PanAm = "Pan American" ; <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PA-47 = "PA-47" ; <br />
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;airline f a = a ++ "utf&ouml;r" ++ f ;
+  </p>
+  <p><b>}</b></p>
+  </div>
+
+
+
+  <div id="section3" class="step" data-x="900" data-y="2200" data-scale="4">
+  <h2>Mapping lemon to GF</h2>  
+  <h1>Architecture</h1>
+  </div>
+
+  <div id="architecture" class="step" data-x="800" data-y="3600" data-scale="4">
+  <img src="architecture.png" width="1000px" border="0" />
+  </div>
+
+  <div id="ontology2abstract_1" class="step" data-x="400" data-y="2700" data-z="-200" data-scale="1">
+  <ul>
+  <li>Ontology classes are mapped to GF categories</li>
+  <li>Ontology properties are mapped to GF functions</li>
+  <li>Ontology entities are mapped to GF constants</li>
+  </ul>
+  </div>
+  <div id="ontology2abstract_2" class="step" data-x="1200" data-y="2700" data-z="-200" data-scale="1">
+  <img src="signature.png" width="800px" border="0" />
+  </div>
+  
+  <div id="architecture" class="step" data-x="800" data-y="3600" data-scale="4">
+  <img src="architecture.png" width="1000px" border="0" />
+  </div>
+
+  <div id="lexicon2concrete_1" class="step" data-x="800" data-y="3850" data-z="-100" data-scale="2">
+  <ol>
+  <li>Collect all senses</li>
+  <li>Assign each sense the entries that denote it</li>
+  <li>For each sense, build a linearization from its entries, <br />
+       based on their part of speech and frame</li>
+  </ol>
+  </div>
+  
+  <div id="lexicon2concrete_example1" class="step" data-x="800" data-y="4350" data-z="-100" data-scale="2">
+  <p>
+  <b>:mountain</b> a lemon:LexicalEntry ; <br />
+  &nbsp;&nbsp;lexinfo:partOfSpeech <font color="14a410">lexinfo:noun</font> ; <br />
+  &nbsp;&nbsp;lemon:canonicalForm [ lemon:writtenRep <font color="14a410">"mountain"@en</font> ] ; <br />
+  &nbsp;&nbsp;<b>lemon:sense [ lemon:reference dbpedia:<font color="c30909">Mountain</font> ]</b> .
+  <br />
+  <br />
+  <b>:peak</b> a lemon:LexicalEntry ; <br />
+  &nbsp;&nbsp;lexinfo:partOfSpeech <font color="14a410">lexinfo:noun</font> ; <br />
+  &nbsp;&nbsp;lemon:canonicalForm [ lemon:writtenRep <font color="14a410">"peak"@en</font> ] ; <br />
+  &nbsp;&nbsp;<b>lemon:sense [ lemon:reference dbpedia:<font color="c30909">Mountain</font> ]</b> .
+  </p>
+  </div>
+  <div id="lexicon2concrete_example2" class="step" data-x="800" data-y="4950" data-z="-100" data-scale="2">
+  <p>
+  lin <b><font color="c30909">Mountain</font></b> = variants { mkCN mountain_N; mkCN peak_N } ;
+  <br />
+  <br />
+  oper <br />
+  &nbsp;&nbsp;mountain_N : N ; <br />
+  &nbsp;&nbsp;mountain_N = <font color="14a410">mkN "mountain"</font>;
+  </p>
+  <p>
+  &nbsp;&nbsp;peak_N : N ; <br />
+  &nbsp;&nbsp;peak_N = <font color="14a410">mkN "peak"</font>;
+  </div>
+
+  <div id="architecture" class="step" data-x="800" data-y="3600" data-scale="4">
+  <img src="architecture.png" width="1000px" border="0" />
+  </div>
+
+
+  <div id="challenges" class="step" data-x="800" data-y="6000" data-scale="4">
+  <h2>Challenges</h2>
+  <p>&nbsp;</p>
+  <ul>
+  <li>Global consistency</li>
+  <li>Complex senses</li>
+  <li>Coverage
+       <font size="4px">
+       <ul>
+       <li>linguistic ontologies (LexInfo, ISOcat, easily extendable)</li>
+       <li>most common LexInfo frames, general frames
+       <li>lemon design patterns</li>
+       </ul>
+       </font>
+  </li>
+  <li>Standalone grammar vs part of larger grammar
+       <font size="4px"><ul>
+       <li> Core &rarr; <b>Domain</b> &rarr; Query &rarr; Dialog</li>
+       </ul></font>
+  </ul>
+  </div>
+
+  <div id="apollo" class="step" data-x="800" data-y="8400" data-scale="4">
+  <h2>Apollo</h2>
+  <p><img src="apollo.png" width="1000px" border="0" /></p>
+  </div>
+  <div id="apollo_qa" class="step" data-x="800" data-y="8400" data-scale="4">
+  <h2>Apollo</h2>
+  <p><img src="apollo_qa.png" width="1000px" border="0" /></p>
+  </div>
+  <div id="apollo_dialog" class="step" data-x="800" data-y="8400" data-scale="4">
+  <h2>Apollo</h2>
+  <p><img src="apollo_dialog.png" width="1000px" border="0" /></p>
+  </div>
+
+<!--
+  <div id="nextsteps" class="step" data-x="800" data-y="9800" data-scale="4">
+  <h2>Test cases</h2>
+  <p>&nbsp;</p>
+  <ul>
+  <li>Travel domain</li>
+  <li>CITEC receptionist</li>
+  <li>DBpedia</li>
+  </ul>
+  </div>
+-->
+
+  <div id="links" class="step" data-x="-3000" data-y="5000" data-rotate="90" data-scale="4">
+  <h3>Code</h3>
+  <p><span class="url"><a href="http://github.com/cunger/lemon2gf">http://github.com/cunger/lemon2gf</a></span></p>
+  <p><span class="url"><a href="http://github.com/cunger/lemon2gf">http://github.com/cunger/apollo</a></span></p>
+  <br />
+  <h3>Event</h3>
+  <p>December 13+14: lemon/GF meeting (Bielefeld)</p>
+  </div>
+
+
+<script type="text/javascript" src="impress.js"></script>
+<script type="text/javascript">impress().init();</script>
+</body>
+
+</html>

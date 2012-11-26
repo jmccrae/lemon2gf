@@ -1,0 +1,255 @@
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ul {
+    list-style: circle;
+    padding-left: 20px;
+}
+ol { 
+    list-style: decimal;
+}
+
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.img {
+    position:absolute;
+    bottom:0;
+    right:0;
+}
+
+.bg {
+    font-size: 32px;
+    padding: 0 0.1em;
+    background: #ccc;
+    border-radius: 0.2em;
+}
+
+.footnote {
+    font-size: 28px;
+}
+
+/*
+ <body> styles with default font and nice gradient in the background.
+*/
+body {
+    font-family: 'Asap', sans-serif;
+    font-weight: 400; 
+    font-size: 26px;
+    line-height: 1.6;
+    
+/*
+    background: rgb(215, 215, 215);
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(rgb(240, 240, 240)), to(rgb(190, 190, 190)));
+    background: -webkit-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:    -moz-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:     -ms-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:      -o-radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190));
+    background:         radial-gradient(rgb(240, 240, 240), rgb(190, 190, 190)); 
+*/
+
+    background: rgb(215,215,215);
+    background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 500, from(#eee), to(#fff));
+    background: -webkit-radial-gradient(#eee, #fff);
+    background:    -moz-radial-gradient(#eee, #fff);
+    background:     -ms-radial-gradient(#eee, #fff);
+    background:      -o-radial-gradient(#eee, #fff);
+    background:         radial-gradient(#eee, #fff);
+    color: #2f2f2f;   
+}
+
+b, strong { font-weight: bold }
+i, em { font-style: italic }
+
+a {
+    color: inherit;
+    text-decoration: none;
+    padding: 0 0.1em;
+    background: #ccc;
+    border-radius: 0.2em;
+
+    -webkit-transition: 0.5s;
+    -moz-transition:    0.5s;
+    -ms-transition:     0.5s;
+    -o-transition:      0.5s;
+    transition:         0.5s;
+}
+
+a:hover,
+a:focus {
+    background: #aaa;
+    color: #fff;
+}
+
+h1 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 80px;
+    font-weight: 700;
+    text-shadow: 0 -1px 2px #FFFFFF, 0 1px 2px #666666;
+}
+
+h2 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    text-shadow: 0 -1px 2px #FFFFFF, 0 1px 2px #666666;
+}
+
+h3 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    text-shadow: 0 -1px 2px #FFFFFF, 0 1px 2px #666666;
+}
+
+.impress-supported .fallback {
+    display: none;
+}
+
+.step {
+    position: relative;
+    width: 1000px;
+    padding: 40px;
+    margin: 20px auto;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+    -ms-box-sizing:     border-box;
+    -o-box-sizing:      border-box;
+    box-sizing:         border-box;
+}
+
+.impress-enabled .step {
+    margin: 0;
+    opacity: 0.2;
+
+    -webkit-transition: opacity 1s;
+    -moz-transition:    opacity 1s;
+    -ms-transition:     opacity 1s;
+    -o-transition:      opacity 1s;
+    transition:         opacity 1s;
+}
+
+.impress-enabled .step.active { opacity: 1 }
+
+
+/*
+    Styling each step separately.
+*/
+
+#title {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
+    padding: 0;
+}
+#title h1 {
+    font-size: 100px;
+    font-weight: 700;
+    
+    -webkit-transform: translateZ(10px);
+    -moz-transform:    translateZ(10px);
+    -ms-transform:     translateZ(10px);
+    -o-transform:      translateZ(10px);
+    transform:         translateZ(10px);
+}
+#title h2 {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 700;
+/*    text-shadow: 2px 2px 5px #555; */
+/*    text-shadow: 0 -2px 1px #666666, 0 2px 2px #FFFFFF; */
+}
+
+#overview {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 30px;
+}
+
+#example_gf_abstract {
+  font-family: 'Cutive Mono', serif;
+  font-size: 24px;
+}
+#example_gf_concreteEng {
+  font-family: 'Cutive Mono', serif;
+  font-size: 24px;
+}
+#example_gf_concreteGer {
+  font-family: 'Cutive Mono', serif;
+  font-size: 24px;
+}
+#example_gf_concreteSwe {
+  font-family: 'Cutive Mono', serif;
+  font-size: 24px;
+}
+
+#lexicon2concrete_example1 {
+  font-family: 'Cutive Mono', serif;
+  font-size: 20px;
+}
+#lexicon2concrete_example2 {
+  font-family: 'Cutive Mono', serif;
+  font-size: 20px;
+}
+
+#links .url {
+    font-family: 'Cutive Mono', serif;
+    font-size: 26px;
+    
+    -webkit-transform: translateZ(20px);
+    -moz-transform:    translateZ(20px);
+    -ms-transform:     translateZ(20px);
+    -o-transform:      translateZ(20px);
+    transform:         translateZ(20px);
+}
+
+.impress-enabled #apollo { opacity: 0; }
+.impress-enabled #apollo_qa { opacity: 0; }
+.impress-enabled #apollo_dialog { opacity: 0; }
+
+.impress-enabled #apollo.active { opacity: 1; }
+.impress-enabled #apollo_qa.active { opacity: 1; }
+.impress-enabled #apollo_dialog.active { opacity: 1; }
+
+
+.impress-on-overview .step {
+    opacity: 1;
+    cursor: pointer;
+}
+
