@@ -16,6 +16,8 @@ language_warning = lambda x: "There is no resource grammar for language "+x+". R
 too_many_pos_warning = lambda x: "The lexical entry "+x+" has more than one part of speech."
 pos_or_frame_not_found_warning = lambda x: "No template for part of speech or frame (or both) in entry "+x+" found."
 pos_not_found_warning = lambda x: "Unknown part of speech: "+x
+complex_class_sense_warning = lambda x,y: "Found a complex class sense ("+x+") but cannot determine its argument; I use arg0 instead. This happened in entries: "+y
+complex_property_sense_warning = lambda x,y: "Found a complex property sense ("+x+") with more than one subject argument. This will not work! I use arg1 instead. This happened in entries: "+y
 
 # Query constructor
 def q(x,y):
@@ -70,7 +72,7 @@ def convert_lexica(signature,lexica,gf_libs,standalone):
         t.name = signature['name']
         t.lang = language
 
-        records = __construct_records__(g,lexicon,signature)
+        records = __construct_records__(g,lexicon,signature,dict())
 
         logging.info('Records:' + print_records(records))
 
@@ -121,14 +123,14 @@ def convert_lexica(signature,lexica,gf_libs,standalone):
         logging.info('Concrete syntax (lexical level): '+ out_file)
 
 
-def __construct_records__(graph,lexicon,signature):
+def __construct_records__(graph,lexicon,signature,renaming):
 
-    senses = __collect_senses__(graph,lexicon,signature)
-    __add_lexical_information__(graph,senses)
+    senses = __collect_senses__(graph,lexicon,signature,renaming)
+    __add_lexical_information__(graph,senses,renaming)
 
     return senses
 
-def __collect_senses__(graph,lexicon,signature):
+def __collect_senses__(graph,lexicon,signature,renaming):
 
     senses = []
     # collect simple senses
@@ -161,9 +163,15 @@ def __collect_senses__(graph,lexicon,signature):
            for e in new_senses:
                e_entry = e.pop('entries',None)
                s_entry = s.pop('entries',None)
-               if e == s: 
-                  e['entries'] = e_entry + s_entry; new = False; break
-               else:      
+               if e['reference'] == s['reference']: 
+                  e['entries'] = e_entry + s_entry; 
+                  if __sense_args_differ__(e,s):
+                      r = dict()
+                      r[s['subjOfProp']] = e['subjOfProp']
+                      r[s['objOfProp']]  = e['objOfProp']
+                      renaming[s_entry[0]] = r
+                  new = False; break
+               else: 
                   e['entries'] = e_entry
                   s['entries'] = s_entry
            if new: new_senses.append(s)
@@ -198,8 +206,11 @@ def __collect_senses__(graph,lexicon,signature):
 
     return new_senses
 
+def __sense_args_differ__(s1,s2):
+     return s1.has_key('subjOfProp') and s1.has_key('objOfProp') and s2.has_key('subjOfProp') and s2.has_key('objOfProp') and not s1['subjOfProp'] == s2['subjOfProp'] and not s1['objOfProp'] == s2['objOfProp']
 
-def __add_lexical_information__(graph,senses):
+
+def __add_lexical_information__(graph,senses,renaming):
 
     pos_map = __read_pos_map__()
 
@@ -239,9 +250,14 @@ def __add_lexical_information__(graph,senses):
                               if not a in args: args.append(a)
                           b[k] = args
                        else: 
-                              a = dict(name=toGF(b[k]))
-                              __queryupdate__(graph,a,'synArg',str(b[k]),toGF)
-                              b[k] = a                    
+                          a = dict(name=toGF(b[k]))
+                          __queryupdate__(graph,a,'synArg',str(b[k]),toGF)
+                          b[k] = a 
+                # renaming args
+                if e in renaming.keys(): 
+                   for v in b.values():
+                       if type(v) == dict and v.has_key('name') and v['name'] in renaming[e].keys():
+                          v['name'] = renaming[e][v['name']]
                 # add syn behavior
                 extended_e['synBehaviors'].append(b)                
 
@@ -353,11 +369,11 @@ def __construct_reference_chain__(sense,signature):
     # determine arguments
     if   len(isA) == 1: new_sense['isA'] = isA[0]
     elif len(isA) > 1: 
-         logging.warning('Found a complex class sense ('+ref+') but cannot determine its argument; I use arg0 instead. This happened in entries: '+str(sense['entries']))
+         logging.warning(complex_class_sense_warning(ref,str(sense['entries'])))
          new_sense['isA'] = 'arg0'
     if   len(start_s) == 1: new_sense['subjOfProp'] = start_s[0]
     elif len(start_s) > 1: 
-         logging.warning('Found a complex property sense ('+ref+') with more than one subject argument. This will not work! I use arg1 instead. This happened in entries: '+str(sense['entries']))
+         logging.warning(complex_property_sense_warning(ref,str(sense['entries'])))
          new_sense['subjOfProp'] = 'arg1'
     if   len(end_o) == 1: new_sense['objOfProp'] = end_o[0]
     elif len(end_o) > 1:  new_sense['objOfProp'] = end_o
@@ -398,7 +414,7 @@ def __split_lin_oper__(t_pos,l,opers,prefix):
             if m: 
                safe_values = []
                for v in lin['value']: 
-                   mv = re.match('.*[^A-Za-z0-9\.](\w+_\w+)\W.*',v)
+                   mv = re.match('.*[^A-Za-z0-9\.]('+m.group(1)+')\W.*',v)
                    if mv: safe_values.append(v.replace(mv.group(1),prefix+mv.group(1)))
                    else:  safe_values.append(v)
                lin['value'] = safe_values
@@ -431,7 +447,9 @@ def __fill_lin_records__(linearizations,signature):
     for lin in linearizations:
         # determine relevant fields
         relevant_fields = []
-        if not isCat(lin['ref'],signature):
+        if isCat(lin['ref'],signature):
+           for l in lincats['category']:    relevant_fields.append(l.split(':')[0].strip())
+        else:
            for l in lincats['proposition']: relevant_fields.append(l.split(':')[0].strip())
         # fill all non-realized relevant fields with []
         for rf in relevant_fields:

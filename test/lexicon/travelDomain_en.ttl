@@ -481,7 +481,7 @@
       isocat:DC-1345 isocat:DC-1366 ;
       lemon:synBehavior [ rdf:type lexinfo:PrepositionFrame ;
                           isocat:DC-4638 arg_to ] ; 
-      lemon:canonicalForm [ lemon:writtenRep "from"@en ] ;
+      lemon:canonicalForm [ lemon:writtenRep "to"@en ] ;
       lemon:sense [lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightArrival>;
                                     lemon:subjOfProp :arg_flight ;
                                     lemon:objOfProp  :arg_arrival ] ,

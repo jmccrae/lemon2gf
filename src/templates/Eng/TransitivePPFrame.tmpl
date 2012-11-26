@@ -1,18 +1,18 @@
-##
-##from .templatex.aux.lins import *
+#set $subj = $syn.subject.name
+#set $obj  = $syn.directObject.name
 ##
 #set $aux = Template(file="templates/aux/lins.tmpl")
-#set $vp_lins         = $aux.get_lins($advs,'mkVP','(mkVP '+$name+'_V2 '+$syn.directObject.name+')')
+#set $vp_lins         = $aux.get_lins($advs,'mkVP','(mkVP '+$name+'_V2 '+$obj+'.cn)')
 #set $passive_vp_lins = $aux.get_lins($advs,'mkVP','(passiveVP '+$name+'_V2)')
-#set $passive_by_vp_lins = $aux.get_lins($advs,'mkVP','(passiveVP '+$name+'_V2 '+$syn.directObject.name+')')
+#set $passive_by_vp_lins = $aux.get_lins($advs,'mkVP','(passiveVP '+$name+'_V2 '+$obj+'.cn)')
 #set $vp_slash_lins   = $aux.get_lins($advs,'mkVP','(mkVPSlash '+$name+'_V2)')
 ##
-#set $cl = $aux.build_lins($vp_lins,'mkCl (mkNP ' + $syn.subject.name +') ')
-#set $passive = $aux.build_lins($passive_vp_lins,'mkCl (mkNP ' + $syn.subject.name +') ')
-#set $passive_by = $aux.build_lins($passive_by_vp_lins,'mkCl (mkNP ' + $syn.subject.name +') ')
+#set $cl = $aux.build_lins($vp_lins,'mkCl (mkNP ' + $subj +'.cn) ')
+#set $passive = $aux.build_lins($passive_vp_lins,'mkCl (mkNP ' + $subj +'.cn) ')
+#set $passive_by = $aux.build_lins($passive_by_vp_lins,'mkCl (mkNP ' + $subj +'.cn) ')
 #set $vp = $aux.build_lins($vp_lins,'')
 #if len($vp_slash_lins) == 1
- #set $object_slash  = 'mkClSlash (mkNP ' + $syn.subject.name +') '+ $vp_lins[0]
+ #set $object_slash  = 'mkClSlash (mkNP ' + $subj +'.cn) '+ $vp_lins[0]
 #end if
 ##
 

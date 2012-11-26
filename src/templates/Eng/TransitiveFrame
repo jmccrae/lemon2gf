@@ -1,9 +1,12 @@
+#set $subj = $syn.subject.name
+#set $obj  = $syn.directObject.name
+
 lin
-   cl = mkCl (mkNP $syn.subject.name) (mkVP ${name}_V2 (mkNP $syn.directObject.name)) 
-   passive = mkCl (mkNP $syn.directObject.name) (passiveVP ${name}_V2) 
-   passive_by = mkCl (mkNP $syn.directObject.name) (passiveVP ${name}_V2 (mkNP $syn.directObject.name))
-   object_slash = mkClSlash (mkNP $syn.subject.name) (mkVPSlash ${name}_V2) 
-   vp = mkVP ${name}_V2 (mkNP $syn.directObject.name)
+   cl = mkCl (mkNP ${subj}.cn) (mkVP ${name}_V2 (mkNP ${obj}.cn)) 
+   passive = mkCl (mkNP ${obj}.cn) (passiveVP ${name}_V2) 
+   passive_by = mkCl (mkNP ${obj}.cn) (passiveVP ${name}_V2 (mkNP ${subj}.cn))
+   object_slash = mkClSlash (mkNP ${subj}.cn) (mkVPSlash ${name}_V2) 
+   vp = mkVP ${name}_V2 (mkNP ${obj}.cn)
 
 oper
    ${name}_V2 : V2;

@@ -1,6 +1,7 @@
+#set $pobj = $syn.prepositionalObject.name
 
 lin
-   adv = Paradigms${lang}.mkAdv ${name}_Prep (mkNP $syn.prepositionalObject.name)
+   adv = Paradigms${lang}.mkAdv ${name}_Prep (mkNP ${pobj}.cn)
 
 oper 
    ${name}_Prep : Prep;

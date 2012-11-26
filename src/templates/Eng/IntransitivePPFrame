@@ -1,9 +1,10 @@
+#set $subj = $syn.subject.name
 ##
 #set $aux = Template(file="templates/aux/lins.tmpl")
 ##
 #set $vp_lins = $aux.get_lins($advs,'mkVP','(mkVP '+$name+'_V)')
 ##
-#set $cl = $aux.build_lins($vp_lins,'mkCl (mkNP ' + $syn.subject.name +') ')
+#set $cl = $aux.build_lins($vp_lins,'mkCl (mkNP ' + $subj +'.cn) ')
 #set $vp = $aux.build_lins($vp_lins,'')
 ##
 
