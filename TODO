@@ -15,7 +15,7 @@ Think about:
 
 Implementation details:
 
-* error handling
+* error handling (reject and report entries that throw an error)
 * provide setup for installation
 * if sparql/meta/* was changed, run query generation
 

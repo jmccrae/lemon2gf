@@ -353,11 +353,11 @@ def __construct_reference_chain__(sense,signature):
     # determine arguments
     if   len(isA) == 1: new_sense['isA'] = isA[0]
     elif len(isA) > 1: 
-         logging.warning('Found a complex class sense ('+ref+') but cannot determine its argument; I use arg0 instead.')
+         logging.warning('Found a complex class sense ('+ref+') but cannot determine its argument; I use arg0 instead. This happened in entries: '+str(sense['entries']))
          new_sense['isA'] = 'arg0'
     if   len(start_s) == 1: new_sense['subjOfProp'] = start_s[0]
     elif len(start_s) > 1: 
-         logging.warning('Found a complex property sense ('+ref+') with more than one subject argument. This will not work! I use arg1 instead.')
+         logging.warning('Found a complex property sense ('+ref+') with more than one subject argument. This will not work! I use arg1 instead. This happened in entries: '+str(sense['entries']))
          new_sense['subjOfProp'] = 'arg1'
     if   len(end_o) == 1: new_sense['objOfProp'] = end_o[0]
     elif len(end_o) > 1:  new_sense['objOfProp'] = end_o
