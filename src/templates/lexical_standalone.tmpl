@@ -2,18 +2,20 @@
 concrete Lexical$name$lang of $name = open Syntax$lang, Paradigms$lang in {
 
 lincat
-   $signature.proposition.name = $signature.proposition.lincat;
-   $signature.entity.name = $signature.entity.lincat;
+
+   Kind        = {};
+   Class       = CN;
+   Description = NP;
+   Quantifier  = Det;
+
+   Proposition = $signature.proposition.lincat ;
 
   #for $pre in $signature.predefined
-   $pre.name = $pre.lincat;
+   $pre.name = <>;
   #end for
 
   #for $c in $signature.categories
-   $c.type = $c.lincat ;
-  #end for
-  #for $c in $signature.funcats
-   $c.type = $c.lincat ;
+   $c.type = <>;
   #end for
 
 lin

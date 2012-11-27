@@ -47,10 +47,6 @@ def run():
 
     __init__()
 
-    if args.standalone:
-       signature['proposition'] = dict(name='Proposition')
-       signature['entity']      = dict(name='Entity')
-
     __generateGF__(signature,args.tbox,args.abox,args.lexica,args.standalone)
 
 

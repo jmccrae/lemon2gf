@@ -23,14 +23,14 @@ abstract $name = Core ** {
 #if type($p.range) == list
 #set $range = ''
  #for $r in $p.range
- #set $range += 'Class ' + str($r) + ' -> '
+ #set $range += 'Description ' + str($r) + ' -> '
  #end for
  #set $range = $range.strip()
 #else
-#set $range = 'Class ' + $p.range + ' ->'
+#set $range = 'Description ' + $p.range + ' ->'
 #end if
 ##
-   $p.name : Class $p.domain -> $range Proposition;
+   $p.name : Description $p.domain -> $range Proposition;
 ##
   #end for
 }

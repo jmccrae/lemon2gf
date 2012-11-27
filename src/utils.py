@@ -27,9 +27,8 @@ def toGF(string):
 def print_signature(signature):
        sig  = '\n----------------------------\n'
        sig += '\nDomain: ' + signature['name'] + '\n'
-       if signature.has_key('proposition') and signature.has_key('entity'):
+       if signature.has_key('proposition'):
           sig += '\nProposition: ' + str(signature['proposition'])
-          sig += '\nEntity:      ' + str(signature['entity'])
        sig += '\n\nPredefined: \n' 
        for p in signature['predefined']: sig += str(p) + '\n'
        sig += '\nCategories:\n'
@@ -40,6 +39,8 @@ def print_signature(signature):
        else: sig += ' None.\n' 
        sig += '\nFunctions:\n '
        for f in signature['functions']:  sig += str(f) + '\n'
+       sig += '\nEntities:\n '
+       for f in signature['entities']:  sig += str(f) + '\n'
        sig += '----------------------------\n'
        return sig
 
@@ -72,10 +73,10 @@ def isCat(s,signature):
 
 def construct_lincats():
     lincats = dict()
-    for label in ('category','proposition','entity'):
-      lincats[label] = []
-      for line in open('config/lincat_default_'+label,'r').readlines():
-          if line.strip() != '': lincats[label].append(line.strip())
+    lincats['category']    = 'CN'
+    lincats['proposition'] = []
+    for line in open('config/lincat_proposition','r').readlines():
+        if line.strip() != '': lincats['proposition'].append(line.strip())
     return lincats
 
 def print_lincat(fields):

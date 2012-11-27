@@ -17,10 +17,7 @@ def convert_tbox(signature,tbox):
     # collect classes
     for c in owl.AllClasses(g):
         class_s = frag_uri(str(c.identifier))
-        to_check = signature['predefined']
-        if signature.has_key('proposition') and signature.has_key('entity'):
-           to_check = to_check + [signature['proposition'],signature['entity']]
-        for d in to_check:
+        for d in signature['predefined']:
             if d['name'] == class_s: d['name'] = d['name']+'_p'
         signature['categories'].append( {'name': "mk"+class_s, 'type': class_s} )
  

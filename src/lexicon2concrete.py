@@ -77,9 +77,9 @@ def convert_lexica(signature,lexica,gf_libs,standalone):
         logging.info('Records:' + print_records(records))
 
         if standalone:
-           for c in signature['categories']+signature['funcats']: c['lincat'] = print_lincat(lincats['category'])
+           for c in signature['categories']+signature['funcats']: c['lincat'] = lincats['category']
+           signature['proposition'] = dict()
            signature['proposition']['lincat'] = print_lincat(lincats['proposition'])
-           signature['entity']['lincat']      = print_lincat(lincats['entity'])
 
         t.signature = signature
 
@@ -447,10 +447,7 @@ def __fill_lin_records__(linearizations,signature):
     for lin in linearizations:
         # determine relevant fields
         relevant_fields = []
-        if isCat(lin['ref'],signature):
-           for l in lincats['category']:    relevant_fields.append(l.split(':')[0].strip())
-        else:
-           for l in lincats['proposition']: relevant_fields.append(l.split(':')[0].strip())
+        for l in lincats['proposition']: relevant_fields.append(l.split(':')[0].strip())
         # fill all non-realized relevant fields with []
         for rf in relevant_fields:
             filled = False
