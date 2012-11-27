@@ -16,4 +16,4 @@ $ python lemon2gf.py -t ../test/ontology/travelDomain.owl -l ../test/lexicon/tra
 
 ## Note
 
-lemon2gf is work in progress, so some stuff might not work (or at least not as expected). A proper documentation is under development.
+lemon2gf is work in progress, so things are constantly changing and might not always work (or at least not as expected). A proper documentation is under development.
