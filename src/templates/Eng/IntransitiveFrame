@@ -1,7 +1,6 @@
-#set $subj = $syn.subject.name
 
 lin
-   cl = mkCl (mkNP ${subj}.cn) (mkVP ${name}_V) 
+   cl = mkCl (mkNP $syn.subject.name) (mkVP ${name}_V) 
    vp = mkVP ${name}_V 
 
 oper

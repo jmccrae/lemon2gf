@@ -1,6 +1,3 @@
-#set $subj = $syn.subject.name
-#set $obj  = $syn.directObject.name
-#set $iobj = $syn.indirectObject.name
 ##
 #set $aux = Template(file="templates/aux/lins.tmpl")
 ##
@@ -9,15 +6,15 @@
 #if $syn.has_key('directObject')
 #if $syn.has_key('indirectObject')
 #set $cat  = 'V3'
-#set $core = '(mkVP '+$name+'_V3 '+$obj+'.cn '+$iobj+'.cn)')
+#set $core = '(mkVP '+$name+'_V3 '+$syn.directObject.name+' '+$syn.indirectObject.name+')')
 #else 
 #set $cat  = 'V2'
-#set $core = '(mkVP '+$name+'_V2 '+$obj+'.cn)')
+#set $core = '(mkVP '+$name+'_V2 '+$syn.directObject.name+')')
 #end if
 #end if
 #set $vp_lins = $aux.get_lins($advs,'mkVP',$cat,$core)
 ##
-#set $cl = $aux.build_lins($vp_lins,'mkCl (mkNP ' + $subj +'.cn) ')
+#set $cl = $aux.build_lins($vp_lins,'mkCl (mkNP ' + $syn.subject.name +') ')
 #set $vp = $aux.build_lins($vp_lins,'')
 ##
 
