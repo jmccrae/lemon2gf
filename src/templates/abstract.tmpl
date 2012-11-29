@@ -1,7 +1,27 @@
-abstract $name = Core ** {
+#set $extends = $getVar('extends',None)
 
+abstract $name = #slurp
+#if $extends
+$extends ** #slurp
+#end if
+{
+
+#if not $extends
+ cat 
+
+   Kind;
+   Class Kind;
+   Description Kind;
+   Quantifier;
+   Proposition;
+#end if
 
  fun
+
+#if not $extends
+   The, Some, All, Generic : Quantifier;
+   mkDescription : (k : Kind) -> Quantifier -> Class k -> Description k;
+#end if
 
   #for $pre in $predefined
    $pre.name : Kind;

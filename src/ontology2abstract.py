@@ -25,18 +25,16 @@ def convert_tbox(signature,tbox):
     for p in owl.AllProperties(g):
         p_dict = {'name': frag_uri(p.identifier)}
         for d in p.domain: p_dict['domain'] = capitalize1(frag_uri(d.identifier))
-        if not p_dict.has_key('domain'): p_dict['domain'] = 'Thing'
+        if not p_dict.has_key('domain'): p_dict['domain'] = 'owlThing'
         for r in p.range:  p_dict['range']  = capitalize1(frag_uri(r.identifier))
-        if not p_dict.has_key('range'):  p_dict['range'] = 'Thing'
+        if not p_dict.has_key('range'):  p_dict['range'] = 'owlThing'
         
         signature['functions'].append(p_dict)
 
 
-def render_tbox(signature,standalone):
+def render_tbox(signature):
 
-    if standalone: tmpl = 'templates/abstract_standalone.tmpl'
-    else:          tmpl = 'templates/abstract.tmpl'
-    abstract_in  = open(tmpl,'r').read()
+    abstract_in  = open('templates/abstract.tmpl','r').read()
     out_file = '../test/out/'+signature['name']+'.gf'
     abstract_out = open(out_file,'w')
     t = Template(abstract_in,searchList=[signature])

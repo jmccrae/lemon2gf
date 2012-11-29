@@ -31,7 +31,7 @@ def q(x,y):
 lincats = construct_lincats()
 
 
-def convert_lexica(signature,lexica,gf_libs,standalone):
+def convert_lexica(signature,lexica,gf_libs):
 
   for lexicon_file in lexica:
     logging.info('Converting: ' + lexicon_file)
@@ -52,23 +52,8 @@ def convert_lexica(signature,lexica,gf_libs,standalone):
            else: language = l ; logging.warning(language_warning(l))
         else: logging.error(language_error); system.exit()
         
-        # render template for top-level concrete syntax file
+        # lexicon -> $domain_name$language.gf
         t = Template(file='templates/concrete.tmpl')
-        t.name = signature['name']
-        t.lang = language
-        t.domainindependent = []
-        t.applications      = []
-
-        out_file = '../test/out/'+signature['name']+language+'.gf'
-        concrete_out = open(out_file,'w')
-        concrete_out.write(str(t))
-        concrete_out.close()
-        logging.info('Concrete syntax (top level): '+ out_file)
-
-        # lexicon -> Lexical$domain_name$language.gf
-        if standalone: tmpl = 'templates/lexical_standalone.tmpl'
-        else:          tmpl = 'templates/lexical.tmpl'
-        t = Template(file=tmpl)
         t.name = signature['name']
         t.lang = language
 
@@ -76,7 +61,7 @@ def convert_lexica(signature,lexica,gf_libs,standalone):
 
         logging.info('Records:' + print_records(records))
 
-        if standalone:
+        if signature.has_key('extends'):
            for c in signature['categories']+signature['funcats']: c['lincat'] = lincats['category']
            signature['proposition'] = dict()
            signature['proposition']['lincat'] = print_lincat(lincats['proposition'])
@@ -106,7 +91,7 @@ def convert_lexica(signature,lexica,gf_libs,standalone):
                 except (KeyError, IOError, OSError):
                    logging.warning(pos_or_frame_not_found_warning(str(e)))
 
-                __split_lin_oper__(t_pos,l,opers,'Lexical'+t.name+t.lang+'.') 
+                __split_lin_oper__(t_pos,l,opers,t.name+t.lang+'.') 
 
             linearizations.append(l)
 
@@ -116,11 +101,11 @@ def convert_lexica(signature,lexica,gf_libs,standalone):
         t.linearizations = linearizations
         t.opers = opers
 
-        out_file = '../test/out/Lexical'+t.name+t.lang+'.gf'
+        out_file = '../test/out/'+signature['name']+language+'.gf'
         concrete_out = open(out_file,'w')
         concrete_out.write(str(t))
         concrete_out.close()
-        logging.info('Concrete syntax (lexical level): '+ out_file)
+        logging.info('Concrete syntax: ('+language+'): ' + out_file)
 
 
 def __construct_records__(graph,lexicon,signature,renaming):
@@ -187,7 +172,7 @@ def __collect_senses__(graph,lexicon,signature,renaming):
                break
         if swap:
            signature['categories'].remove(swap)
-           swap['domain'] = 'Thing'
+           swap['domain'] = 'owlThing'
            signature['funcats'].append(swap)
         # process domain and range restrictions
         domain_res = s.has_key('propertyDomain')
@@ -333,7 +318,7 @@ def __construct_reference_chain__(sense,signature):
                         stack.append( dict(chain=new_chain,i=s['objOfProp']) )
     
     # build new sense by flattening chains
-    ref = ''; dom = 'Thing'; rng = 'Thing'
+    ref = ''; dom = 'owlThing'; rng = 'owlThing'
     domains = []; ranges = []
     for chain in chains: 
         if not ref == '':  ref += '_or'
@@ -412,12 +397,16 @@ def __split_lin_oper__(t_pos,l,opers,prefix):
         for oper in opers:
             m = re.match('^\s*(\w+_\w+)\s?:\s?\w+\s*;',oper)
             if m: 
-               safe_values = []
-               for v in lin['value']: 
-                   mv = re.match('.*[^A-Za-z0-9\.]('+m.group(1)+')\W.*',v)
-                   if mv: safe_values.append(v.replace(mv.group(1),prefix+mv.group(1)))
-                   else:  safe_values.append(v)
-               lin['value'] = safe_values
+               if type(lin['value']) == list: 
+                  new_value = []
+                  for v in lin['value']:
+                      mv = re.match('.*[^A-Za-z0-9\.]('+m.group(1)+')\W.*',v)
+                      if mv: new_value.append(v.replace(mv.group(1),prefix+mv.group(1)))
+                      else:  new_value.append(v)
+                  lin['value'] = new_value
+               else:
+                      mv = re.match('.*[^A-Za-z0-9\.]('+m.group(1)+')\W.*',lin['value'])
+                      if mv: lin['value'] = v.replace(mv.group(1),prefix+mv.group(1)) 
 
 
 def __contract_lin_records__(linearizations):
@@ -447,13 +436,14 @@ def __fill_lin_records__(linearizations,signature):
     for lin in linearizations:
         # determine relevant fields
         relevant_fields = []
-        for l in lincats['proposition']: relevant_fields.append(l.split(':')[0].strip())
-        # fill all non-realized relevant fields with []
-        for rf in relevant_fields:
-            filled = False
-            for l in lin['lin']:
-                if l.has_key('field') and l['field'] == rf: filled = True; break
-            if not filled:
-               lin['lin'].append( dict(field=rf,value=[]) )
+        if isProposition(lin['ref'],signature):
+           for l in lincats['proposition']: relevant_fields.append(l.split(':')[0].strip())
+           # fill all non-realized relevant fields with []
+           for rf in relevant_fields:
+               filled = False
+               for l in lin['lin']:
+                   if l.has_key('field') and l['field'] == rf: filled = True; break
+               if not filled:
+                  lin['lin'].append( dict(field=rf,value=[]) )
 
 

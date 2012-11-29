@@ -1,5 +1,5 @@
 lin
-   cn = mkCN ${name}_N
+   mkCN ${name}_N
 
 oper
    ${name}_N : N; 

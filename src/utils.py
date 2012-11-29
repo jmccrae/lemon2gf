@@ -5,12 +5,15 @@ import json
 # string utilities
 
 def capitalize1(string):
+    if string.startswith('xsd'): return 'xsd'+capitalize1(string[3:])
     return string[:1].upper() + string[1:]
 
 def snakecase(string):
     return re.sub('\B([A-Z])','_\g<1>',string).lower()
 
 def frag_uri(string):
+    if string.startswith('http://www.w3.org/2001/XMLSchema#'):
+       return 'xsd'+string.split('#')[1]
     return re.match('.*/([^/]+\#)?([^/]+)$',string).group(2)
 
 def frag_file(string):
@@ -64,9 +67,13 @@ def listupdate(d1,d2):
 # tests
 
 def isCat(s,signature):
-    if s.startswith('mk'): return True
     for c in signature['categories'] + signature['funcats']:
         if c['type'] == s or c['name'] == s: return True
+    return False
+
+def isProposition(s,signature):
+    for p in signature['functions']:
+        if p['name'] == s : return True
     return False
 
 # lincat helper functions

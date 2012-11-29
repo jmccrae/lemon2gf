@@ -14,7 +14,7 @@
 #end if
 #set $vp_lins = $aux.get_lins($advs,'mkVP',$cat,$core)
 ##
-#set $cl = $aux.build_lins($vp_lins,'mkCl (mkNP ' + $syn.subject.name +') ')
+#set $cl = $aux.build_lins($vp_lins,'mkCl ' + $syn.subject.name +' ')
 #set $vp = $aux.build_lins($vp_lins,'')
 ##
 

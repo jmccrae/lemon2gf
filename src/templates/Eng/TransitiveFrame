@@ -1,10 +1,10 @@
 
 lin
-   cl = mkCl (mkNP $syn.subject.name) (mkVP ${name}_V2 (mkNP $syn.directObject.name)) 
-   passive = mkCl (mkNP $syn.directObject.name) (passiveVP ${name}_V2) 
-   passive_by = mkCl (mkNP $syn.directObject.name) (passiveVP ${name}_V2 (mkNP $syn.subject.name))
-   object_slash = mkClSlash (mkNP $syn.subject.name) (mkVPSlash ${name}_V2) 
-   vp = mkVP ${name}_V2 (mkNP $syn.directObject.name)
+   cl = mkCl $syn.subject.name (mkVP ${name}_V2 $syn.directObject.name) 
+   passive = mkCl $syn.directObject.name (passiveVP ${name}_V2) 
+   passive_by = mkCl $syn.directObject.name (passiveVP ${name}_V2 $syn.subject.name)
+   object_slash = mkClSlash $syn.subject.name (mkVPSlash ${name}_V2) 
+   vp = mkVP ${name}_V2 $syn.directObject.name
 
 oper
    ${name}_V2 : V2;

@@ -1,6 +1,6 @@
 
 lin
-   adv = Paradigms${lang}.mkAdv ${name}_Prep (mkNP $syn.prepositionalObject.name)
+   adv = Syntax${lang}.mkAdv ${name}_Prep $syn.prepositionalObject.name
 
 oper 
    ${name}_Prep : Prep;

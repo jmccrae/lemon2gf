@@ -11,13 +11,12 @@
 
 lin
 #if $poss_advs
-   cn = $cn
-   np = $np
+   $cn
 #else 
 #if $advs
    noun_pp = $noun_pp
 #else 
-   cn = mkCN ${name}_N
+   mkCN ${name}_N
 #end if
 #end if
 

@@ -1,19 +1,69 @@
 --# -path=.:prelude:present
 
-concrete $name$lang of $name =
+concrete $name$lang of $name = #slurp
+#if $signature.has_key('extends')
+$signature.extends$lang ** #slurp
+#end if
+open Syntax$lang, Paradigms$lang in {
 
-    Lexical$name$lang #slurp
-#if $domainindependent or $applications
-,
+lincat
+
+#if not $signature.has_key('extends')
+   Kind        = {};
+   Class       = CN;
+   Description = NP;
+   Quantifier  = Det;
+
+   Proposition = $signature.proposition.lincat ;
 #end if
 
-   #for $g in $domainindependent
-    Clause$g$lang,
-   #end for
+  #for $pre in $signature.predefined
+   $pre.name = <>;
+  #end for
 
-   #set $sep = ''
-   #for $a in $applications 
-    $sep$a$lang
-   #set $sep = ', '
-   #end for
+  #for $c in $signature.categories
+   $c.type = <>;
+  #end for
 
+lin
+
+#if not $signature.has_key('extends')
+   The  = the_Det;
+   Some = a_Det;
+   All  = every_Det;
+   Generic = aPl_Det;
+
+   mkDescription _ det class = mkNP det class;
+#end if
+
+#for $l in $linearizations
+  $l.ref $l.args = #slurp
+#if $l['isRecord'] 
+{
+#end if
+#for $lin in $l.lin
+#if $l['isRecord']
+       $lin.field = #slurp
+#end if
+#if $len($lin.value) == 1
+$lin.value[0] ; 
+#else
+variants { #slurp
+#for $v in $lin.value
+$v; #slurp
+#end for
+} ;
+#end if
+#end for
+#if $l['isRecord']
+   } ;
+#end if
+
+#end for
+
+oper
+  #for $o in $opers
+   $o
+  #end for
+
+}

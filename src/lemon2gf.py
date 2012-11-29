@@ -9,11 +9,11 @@ from utils import print_signature
 
 
 gf_libs   = dict()
-signature = dict( predefined   = [ dict(name='Thing',   lincat='CN'),
-                                   dict(name='String',  lincat='CN'),
-                                   dict(name='Integer', lincat='CN'),
-                                   dict(name='Decimal', lincat='CN'),
-                                   dict(name='DateTime',lincat='CN') ],
+signature = dict( predefined   = [ dict(name='owlThing',   lincat='CN'),
+                                   dict(name='xsdString',  lincat='CN'),
+                                   dict(name='xsdInteger', lincat='CN'),
+                                   dict(name='xsdDecimal', lincat='CN'),
+                                   dict(name='xsdDateTime',lincat='CN') ],
                    categories = [],
                    functions  = [],
                    funcats    = [],
@@ -30,10 +30,12 @@ def run():
                     help='path to the ontology instances (an OWL/RDF file)')
     p.add_argument('-l', action='append', dest='lexica', default=[],
                     help='path to the lexicon (a lemon RDF file)')
-    p.add_argument('--apollo', action='store_false', dest='standalone', default=True,
-                    help='switches from a standalone grammar to one that extends Core (requires apollo)')
+    p.add_argument('-e', action='store', dest='extends',
+                    help='path to the lexicon (a lemon RDF file)')
 
     args = p.parse_args()
+
+    if args.extends: signature['extends'] = args.extends
 
 
     logging.basicConfig(filename='../test/out/lemon2gf.log',
@@ -47,7 +49,7 @@ def run():
 
     __init__()
 
-    __generateGF__(signature,args.tbox,args.abox,args.lexica,args.standalone)
+    __generateGF__(signature,args.tbox,args.abox,args.lexica)
 
 
 def __init__():
@@ -58,7 +60,7 @@ def __init__():
            for l in ls[0:4]: gf_libs[l.strip()] = ls[4].strip()
 
 
-def __generateGF__(signature,tbox,abox,lexica,standalone):
+def __generateGF__(signature,tbox,abox,lexica):
 
     domain_name = ''
 
@@ -67,12 +69,12 @@ def __generateGF__(signature,tbox,abox,lexica,standalone):
 
     if not abox is None: convert_abox(abox,domain_name)
 
-    if lexica: convert_lexica(signature,lexica,gf_libs,standalone)
+    if lexica: convert_lexica(signature,lexica,gf_libs)
     else: logging.warning('No lexicon specified.')
     
     logging.info('Signature:' + print_signature(signature))
 
-    render_tbox(signature,standalone)
+    render_tbox(signature)
     
     logging.info('Done.')
 
