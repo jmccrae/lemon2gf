@@ -36,10 +36,6 @@ def print_signature(signature):
        for p in signature['predefined']: sig += str(p) + '\n'
        sig += '\nCategories:\n'
        for c in signature['categories']:    sig += str(c) + '\n'
-       sig += '\nFunctional categories:\n'
-       if signature['funcats']:
-          for c in signature['funcats']: sig += str(c) + '\n'
-       else: sig += ' None.\n' 
        sig += '\nFunctions:\n '
        for f in signature['functions']:  sig += str(f) + '\n'
        sig += '\nEntities:\n '

@@ -4,7 +4,7 @@ Transforms an ontology and a <a href="http://lemon-model.net/">lemon</a> lexicon
 
 ## Test
 ```
-$ python lemon2gf.py -t ../test/ontology/travelDomain.owl -l ../test/lexicon/travelDomain_en.ttl
+$ python lemon2gf.py -o ../test/ontology/travelDomain.owl -a ../test/ontology/travelDomain_ABox.ttl -l ../test/lexicon/travelDomain_en.ttl
 ```
 
 *Works with:*

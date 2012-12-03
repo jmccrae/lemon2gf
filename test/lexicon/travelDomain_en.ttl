@@ -56,7 +56,8 @@
                 :from,
                 :to,
                 :at,
-                :in .
+                :in,
+                :Boston .
 
 
 :airline a lemon:LexicalEntry ;
@@ -526,4 +527,11 @@
        lemon:canonicalForm [ lemon:writtenRep "second"@en ] .
 :third isocat:DC-1345 isocat:DC-1230 ;
        lemon:canonicalForm [ lemon:writtenRep "third"@en ] .
+
+
+:Boston a lemon:LexicalEntry;
+        isocat:DC-1345 isocat:DC-1371 ;
+        lemon:canonicalForm [ lemon:writtenRep "Boston"@en ] ;
+        lemon:sense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain-Abox.owl#Boston> ] .
+
 

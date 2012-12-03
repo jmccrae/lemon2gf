@@ -32,25 +32,24 @@ $extends ** #slurp
   #end for
 
   #for $c in $categories
+   #if $c.has_key('name')
    $c.name : Class $c.type; 
-  #end for
-
-  #for $c in $funcats
-   $c.name : Class $c.domain -> Kind;
+   #end if
   #end for
 
   #for $p in $functions
-#if type($p.range) == list
-#set $range = ''
- #for $r in $p.range
- #set $range += 'Description ' + str($r) + ' -> '
- #end for
- #set $range = $range.strip()
+   $p.name : #slurp
+#for $a in $p.argumentTypes
+Description $a -> #slurp
+#end for
+#if $p.resultType == 'Default'
+Proposition
 #else
-#set $range = 'Description ' + $p.range + ' ->'
+$p.resultType
 #end if
-##
-   $p.name : Description $p.domain -> $range Proposition;
-##
+  #end for
+
+  #for $e in $entities
+   $e.name : Description $e.type;   
   #end for
 }

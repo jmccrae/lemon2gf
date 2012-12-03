@@ -1,0 +1,13 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix travel: <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#>.
+@prefix base: <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain-ABox.owl#>.
+@prefix : <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain-ABox.owl#>.
+
+:Boston rdf:type travel:City.
+:Detroit rdf:type travel:City.
+:Takoma rdf:type travel:City.
+:Oakland rdf:type travel:City.
+:Montreal rdf:type travel:City.
+:Milwaukee rdf:type travel:City.
+:Los_Angeles rdf:type travel:City.

@@ -61,10 +61,9 @@ def convert_lexica(signature,lexica,gf_libs):
 
         logging.info('Records:' + print_records(records))
 
-        if signature.has_key('extends'):
-           for c in signature['categories']+signature['funcats']: c['lincat'] = lincats['category']
-           signature['proposition'] = dict()
-           signature['proposition']['lincat'] = print_lincat(lincats['proposition'])
+        for c in signature['categories']: c['lincat'] = lincats['category']
+        signature['proposition'] = dict()
+        signature['proposition']['lincat'] = print_lincat(lincats['proposition'])
 
         t.signature = signature
 
@@ -163,17 +162,18 @@ def __collect_senses__(graph,lexicon,signature,renaming):
 
     for s in senses: 
         # rename category constructors
-        # and if class has an isA argument, move it from categories to funcats
+        # and if class has an isA argument, move it from categories to functions
         swap = None
         for c in signature['categories']:
             if s['reference'] == c['type']: 
-               s['reference'] = c['name'] 
-               if s.has_key('isA'): swap = c
+               s['reference'] =  c['name'] 
+#               if s.has_key('isA'): swap = c
                break
-        if swap:
-           signature['categories'].remove(swap)
-           swap['domain'] = 'owlThing'
-           signature['funcats'].append(swap)
+#        if swap:
+#           signature['categories'].remove(swap)
+#           swap['domain'] = 
+#           swap['range']  = c['type']
+#           signature['functions'].append(swap)
         # process domain and range restrictions
         domain_res = s.has_key('propertyDomain')
         range_res  = s.has_key('propertyRange')
@@ -181,11 +181,12 @@ def __collect_senses__(graph,lexicon,signature,renaming):
            for p in signature['functions']:
                if p['name'] == s['reference']:
                   new_p = dict()
-                  new_p['name'] = s['reference'] = p['name']+'_restr'
-                  if domain_res: new_p['domain'] = s['propertyDomain']
-                  else: new_p['domain'] = p['domain']
-                  if range_res:  new_p['range']  = s['propertyRange']
-                  else: new_p['range']  = p['range']
+                  new_p['name']   = s['reference'] = p['name']+'_restr'
+                  new_p['argumentTypes'] = []
+                  if domain_res: new_p['argumentTypes'].append( s['propertyDomain'] )
+                  else: new_p['argumentTypes'].extend( p['argumentTypes'] )
+                  if range_res:  new_p['argumentTypes'].append( s['propertyRange'] )
+                  else: new_p['argumentTypes'].append( p['resultType'] )
                   signature['functions'].append(new_p)
                   break
 
@@ -288,8 +289,8 @@ def __construct_reference_chain__(sense,signature):
         found_start = True
         found_end   = True
         for ss in subs:
-            if ss['objOfProp']  == s['subjOfProp']: found_start = False;
-            if ss['subjOfProp'] == s['objOfProp']:  found_end   = False;
+            if ss['objOfProp']  == s['subjOfProp']: found_start = False
+            if ss['subjOfProp'] == s['objOfProp']:  found_end   = False
         if found_start: start_s.append(s['subjOfProp'])
         if found_end  : end_o.append(s['objOfProp'])
 
@@ -318,10 +319,10 @@ def __construct_reference_chain__(sense,signature):
                         stack.append( dict(chain=new_chain,i=s['objOfProp']) )
     
     # build new sense by flattening chains
-    ref = ''; dom = 'owlThing'; rng = 'owlThing'
-    domains = []; ranges = []
-    for chain in chains: 
-        if not ref == '':  ref += '_or'
+    ref = ''; args = []; result = 'Default'
+    visited_subjs  = []; visited_objs = [];
+    for chain in chains:
+        if not ref == '':  ref += '_AND'
         if len(chain) > 1: ref += '_composition'
         for i,r in enumerate(chain['reference']): 
             ref += '_'+r
@@ -329,26 +330,29 @@ def __construct_reference_chain__(sense,signature):
             if is_first or is_last:
                for p in signature['functions']:
                    if p['name'] == r:
-                      if is_first: domains.append(p['domain'])
-                      if is_last:  ranges.append(p['range'])
+                      if is_first and not chain['subjOfProp'] in visited_subjs: args.append(p['argumentTypes'][0])
+                      if is_last  and not chain['objOfProp']  in visited_objs:  args.append(p['argumentTypes'][-1])
                       break
-    if ref.startswith('_'): ref = ref[1:]
-
-    if len(domains) == 1: dom = domains[0]
-    if len(ranges)  == 1: rng = ranges[0]
-    else: rng = ranges
+        visited_subjs.append(chain['subjOfProp'])
+        visited_objs.append(chain['objOfProp'])
+    if  ref.startswith('_'): ref = ref[1:]
 
     # add to signature
     if cs:
        if len(cs) == 1:
-          ref = cs[0]['reference'] + '_with_' + ref
+          ref = cs[0]['reference'] + '_WITH_' + ref
        if len(cs) > 1: 
           pref = 'union_'
           for c in cs: pref += c['reference'] + '_'
           pref += 'with_' + ref
-       signature['categories'].append( {'name': 'mk'+ref, 'type': ref} )
+       if args:
+          signature['categories'].append( {'type': ref} )
+          signature['functions'].append( {'name': 'mk'+ref, 'argumentTypes': args, 'resultType': ref} )
+       else:
+          signature['categories'].append( {'name': 'mk'+ref, 'type': ref} )
     else:
-       signature['functions'].append( {'name': ref, 'domain': dom, 'range': rng} )
+          if not args: args = ['owlThing']
+          signature['functions'].append( {'name': ref, 'argumentTypes': args, 'resultType': result} )
 
     new_sense['reference'] = ref
     # determine arguments

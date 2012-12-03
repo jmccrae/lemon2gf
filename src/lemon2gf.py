@@ -24,7 +24,7 @@ signature = dict( predefined   = [ dict(name='owlThing',   lincat='CN'),
 def run():
 
     p = argparse.ArgumentParser(description='lemon2gf')
-    p.add_argument('-t', action='store',  dest='tbox', 
+    p.add_argument('-o', action='store',  dest='tbox', 
                    help='path to the ontology schema (an OWL/RDF file)')
     p.add_argument('-a', action='store',  dest='abox', 
                     help='path to the ontology instances (an OWL/RDF file)')
@@ -36,7 +36,6 @@ def run():
     args = p.parse_args()
 
     if args.extends: signature['extends'] = args.extends
-
 
     logging.basicConfig(filename='../test/out/lemon2gf.log',
                         filemode='w', 
@@ -64,17 +63,15 @@ def __generateGF__(signature,tbox,abox,lexica):
 
     domain_name = ''
 
-    if not tbox is None: convert_tbox(signature,tbox)
+    if not tbox is None: convert_ontology(signature,tbox,abox)
     else: logging.warning('No T-Box specified. Resulting GF grammar will not compile.')
-
-    if not abox is None: convert_abox(abox,domain_name)
 
     if lexica: convert_lexica(signature,lexica,gf_libs)
     else: logging.warning('No lexicon specified.')
     
     logging.info('Signature:' + print_signature(signature))
 
-    render_tbox(signature)
+    render_ontology(signature)
     
     logging.info('Done.')
 
