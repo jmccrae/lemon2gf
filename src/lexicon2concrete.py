@@ -33,6 +33,14 @@ lincats = construct_lincats()
 
 def convert_lexica(signature,lexica,gf_libs):
 
+  lexicalizations = dict()
+
+  # fill default lincats for categories and propositions
+  for c in signature['categories']: c['lincat'] = lincats['category']
+  signature['proposition'] = dict()
+  signature['proposition']['lincat'] = print_lincat(lincats['proposition'])
+
+  ## FOR ALL LEXICON FILES
   for lexicon_file in lexica:
     logging.info('Converting: ' + lexicon_file)
 
@@ -51,21 +59,12 @@ def convert_lexica(signature,lexica,gf_libs):
            if l in gf_libs.keys(): language = gf_libs[l]
            else: language = l ; logging.warning(language_warning(l))
         else: logging.error(language_error); system.exit()
-        
-        # lexicon -> $domain_name$language.gf
-        t = Template(file='templates/concrete.tmpl')
-        t.name = signature['name']
-        t.lang = language
 
+        # build sense record from lexicon entries
         records = __construct_records__(g,lexicon,signature,dict())
-
         logging.info('Records:' + print_records(records))
 
-        for c in signature['categories']: c['lincat'] = lincats['category']
-        signature['proposition'] = dict()
-        signature['proposition']['lincat'] = print_lincat(lincats['proposition'])
-
-        t.signature = signature
+        # build linearizations and opers
 
         linearizations = []
         opers = []
@@ -90,21 +89,39 @@ def convert_lexica(signature,lexica,gf_libs):
                 except (KeyError, IOError, OSError):
                    logging.warning(pos_or_frame_not_found_warning(str(e)))
 
-                __split_lin_oper__(t_pos,l,opers,t.name+t.lang+'.') 
+                __split_lin_oper__(t_pos,l,opers,signature['name']+language+'.') 
 
             linearizations.append(l)
 
         __contract_lin_records__(linearizations)
         __fill_lin_records__(linearizations,signature)
-        
-        t.linearizations = linearizations
-        t.opers = opers
 
-        out_file = '../test/out/'+signature['name']+language+'.gf'
-        concrete_out = open(out_file,'w')
-        concrete_out.write(str(t))
-        concrete_out.close()
-        logging.info('Concrete syntax: ('+language+'): ' + out_file)
+        # collect linearizations and opers in lexicalizations    
+        if lexicalizations.has_key(language):
+           lexicalizations[language]['linearizations'].extend(linearizations)
+           lexicalizations[language]['opers'].extend(opers)
+        else:
+           lexicalizations[language] = { 'linearizations': linearizations, 'opers': opers }
+  ## END FOR ALL LEXICON FILES
+
+  ## FOR ALL COLLECTED LEXICALIZATIONS
+  # render concrete template as $domain_name$language.gf
+  for language_key in lexicalizations.keys(): 
+
+      t = Template(file='templates/concrete.tmpl')
+      t.name = signature['name']
+      t.lang = language_key
+      t.signature = signature
+
+      t.linearizations = lexicalizations[language_key]['linearizations']
+      t.opers = lexicalizations[language_key]['opers']
+
+      out_file = '../test/out/'+signature['name']+language_key+'.gf'
+      concrete_out = open(out_file,'w')
+      concrete_out.write(str(t))
+      concrete_out.close()
+      logging.info('Concrete syntax: ('+language_key+'): ' + out_file)
+  ## END FOR ALL COLLECTED LEXICALIZATIONS
 
 
 def __construct_records__(graph,lexicon,signature,renaming):
