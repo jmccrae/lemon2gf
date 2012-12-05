@@ -1,0 +1,33 @@
+#import os
+#set $path = os.getcwd().replace('src','test/out')
+#from datetime import datetime
+#set $now = datetime.now()
+# Automatically generated: $now
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix lemon: <http://www.monnet-project.eu/lemon#>.
+@prefix lexinfo: <http://www.lexinfo.net/ontology/2.0/lexinfo#>.
+
+@prefix base: <file:///$path/abox_$language#>.
+
+
+:lexicon a lemon:Lexicon ;
+    lemon:language "$language" ;
+#set $sep = ''
+#for $i in $individuals
+$sep 
+    lemon:entry :$i.name #slurp
+#set $sep = '; '
+#end for
+.
+
+#for $i in $individuals
+#set $writtenRep = $i.labels[$language].replace('_',' ')
+
+:$i.name a lemon:LexicalEntry ;
+   lexinfo:partOfSpeech lexinfo:properNoun ;
+   lemon:canonicalForm [ lemon:writtenRep "$writtenRep"@$language ] ;
+   lemon:sense [ lemon:reference <$i.uri> ] .
+#end for
+
