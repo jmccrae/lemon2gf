@@ -3,7 +3,30 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix travel: <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#>.
 @prefix base: <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain-ABox.owl#>.
-@prefix : <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain-ABox.owl#>.
+
+
+#### AIRLINE ####
+
+:Delta_Airlines rdf:type travel:Airline ;
+        rdfs:label "Delta Airlines"@en .
+
+:United_Airlines rdf:type travel:City ;
+        rdfs:label "United Airlines"@en .
+
+:American_Airlines rdf:type travel:Airline ;
+        rdfs:label "American Airlines"@en .
+
+:Northwest_Airlines rdf:type travel:City ;
+        rdfs:label "Northwest Airlines"@en .
+
+:Canadian_Airlines_International rdf:type travel:Airline ;
+        rdfs:label "Canadian Airlines International"@en .
+
+:Continental_Airlines rdf:type travel:City ;
+        rdfs:label "Continental Airlines"@en .
+
+
+#### CITY ####
 
 :Boston rdf:type travel:City ;
         rdfs:label "Boston"@en .
@@ -24,4 +47,137 @@
         rdfs:label "Milwaukee"@en .
 
 :Los_Angeles rdf:type travel:City ;
-        rdfs:label "Los_Angeles"@en .
+        rdfs:label "Los Angeles"@en .
+
+:Baltimore rdf:type travel:City ;
+        rdfs:label "Baltimore"@en .
+
+:New_York rdf:type travel:City ;
+        rdfs:label "New York"@en .
+
+:Seattle rdf:type travel:City ;
+        rdfs:label "Seattle"@en .
+
+:Minneapolis rdf:type travel:City ;
+        rdfs:label "Minneapolis"@en .
+
+:Philadelphia rdf:type travel:City ;
+        rdfs:label "Philadelphia"@en .
+
+:Dallas rdf:type travel:City ;
+        rdfs:label "Dallas"@en .
+
+:San_Francisco rdf:type travel:City ;
+        rdfs:label "San_Francisco"@en .
+
+:Toronto rdf:type travel:City ;
+        rdfs:label "Toronto"@en .
+
+:Cincinnati rdf:type travel:City ;
+        rdfs:label "Cincinnati"@en .
+
+:Kansas_City rdf:type travel:City ;
+        rdfs:label "Kansas City"@en .
+
+:Pittsburgh rdf:type travel:City ;
+        rdfs:label "Pittsburgh"@en .
+
+:Orlando rdf:type travel:City ;
+        rdfs:label "Orlando"@en .
+
+:Indianapolis rdf:type travel:City ;
+        rdfs:label "Indianapolis"@en .
+
+:San_Jose rdf:type travel:City ;
+        rdfs:label "San Jose"@en .
+
+:Atlanta rdf:type travel:City ;
+        rdfs:label "Atlanta"@en .
+
+:San_Diego rdf:type travel:City ;
+        rdfs:label "San Diego"@en .
+
+:Newark rdf:type travel:City ;
+        rdfs:label "Newark"@en .
+
+:Houston rdf:type travel:City ;
+        rdfs:label "Houston"@en .
+
+:Denver rdf:type travel:City ;
+        rdfs:label "Denver"@en .
+
+:Miami rdf:type travel:City ;
+        rdfs:label "Miami"@en .
+
+:Saint_Paul rdf:type travel:City ;
+        rdfs:label "Saint Paul"@en .
+
+:Phoenix rdf:type travel:City ;
+        rdfs:label "Phoenix"@en .
+
+:Salt_Lake_City rdf:type travel:City ;
+        rdfs:label "Salt_Lake_City"@en .
+
+:Nashville rdf:type travel:City ;
+        rdfs:label "Nashville"@en .
+
+:Saint_Louis rdf:type travel:City ;
+        rdfs:label "Saint Louis"@en .
+
+:Washington_D_C rdf:type travel:City ;
+        rdfs:label "Washington D C"@en .
+
+:Memphis rdf:type travel:City ;
+        rdfs:label "Memphis"@en .
+
+:Chicago rdf:type travel:City ;
+        rdfs:label "Chicago"@en .
+
+:Charlotte rdf:type travel:City ;
+        rdfs:label "Charlotte"@en .
+
+:Cleveland rdf:type travel:City ;
+        rdfs:label "Cleveland"@en .
+
+:Las_Vegas rdf:type travel:City ;
+        rdfs:label "Las Vegas"@en .
+
+:Long_Beach rdf:type travel:City ;
+        rdfs:label "Long Beach"@en .
+
+:Burbank rdf:type travel:City ;
+        rdfs:label "Burbank"@en .
+
+:Tampa rdf:type travel:City ;
+        rdfs:label "Tampa"@en .
+
+:Saint_Petersburg rdf:type travel:City ;
+        rdfs:label "Saint Petersburg"@en .
+
+
+#### STATE ####
+
+:New_Jersey rdf:type travel:State ;
+        rdfs:label "New Jersey"@en .
+
+
+#### AIRPORT ####
+
+:LoveField rdf:type travel:Airport ;
+        rdfs:label "Love Field"@en .
+
+:Boston_Airport rdf:type travel:Airport ;
+        rdfs:label "Boston Airport"@en .
+
+:Toronto_International_Airport rdf:type travel:City ;
+        rdfs:label "Toronto International Airport"@en .
+
+:Orlando_Airport rdf:type travel:City ;
+        rdfs:label "Orlando Airport"@en .
+
+:La_Guardia rdf:type travel:Airport ;
+        rdfs:label "La Guardia"@en .
+
+:J_F_K rdf:type travel:Airport ;
+        rdfs:label "J F K"@en .
+
