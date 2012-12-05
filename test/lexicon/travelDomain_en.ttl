@@ -340,7 +340,7 @@
   lemon:synBehavior [ rdf:type lexinfo:IntransitivePPFrame ; 
                       isocat:DC-2261 :arg_leg ;
                       isocat:DC-4638 :arg_source ] ;
-  lemon:sense [ lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightDeparture>;
+  lemon:sense [ lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightdeparture>;
                                  lemon:subjOfProp :arg_leg ;
                                  lemon:objOfProp  :arg_departure ] ,
                                [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>;
@@ -353,7 +353,7 @@
   lemon:synBehavior [ rdf:type lexinfo:TransitiveFrame ;
                       isocat:DC-2261 :arg_flight ;
                       isocat:DC-2263 :arg_left ] ;
-  lemon:sense [ lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightDeparture>;
+  lemon:sense [ lemon:subsense [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#flightdeparture>;
                                  lemon:subjOfProp :arg_flight ;
                                  lemon:objOfProp  :arg_departure ] ,
                                [ lemon:reference <https://sites.google.com/site/portdial2/downloads-area/Travel-Domain.owl#city>;

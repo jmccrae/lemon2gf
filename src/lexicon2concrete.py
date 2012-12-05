@@ -198,7 +198,7 @@ def __collect_senses__(graph,lexicon,signature,renaming):
            for p in signature['functions']:
                if p['name'] == s['reference']:
                   new_p = dict()
-                  new_p['name']   = s['reference'] = p['name']+'_restr'
+                  new_p['name'] = s['reference'] = p['name']+'_restr'
                   new_p['argumentTypes'] = []
                   if domain_res: new_p['argumentTypes'].append( s['propertyDomain'] )
                   else: new_p['argumentTypes'].extend( p['argumentTypes'] )
@@ -210,7 +210,11 @@ def __collect_senses__(graph,lexicon,signature,renaming):
     return new_senses
 
 def __sense_args_differ__(s1,s2):
-     return s1.has_key('subjOfProp') and s1.has_key('objOfProp') and s2.has_key('subjOfProp') and s2.has_key('objOfProp') and not s1['subjOfProp'] == s2['subjOfProp'] and not s1['objOfProp'] == s2['objOfProp']
+     if s1.has_key('subjOfProp') and s2.has_key('subjOfProp'):
+        if not s1['subjOfProp'] == s2['subjOfProp']: return True
+     if s1.has_key('objOfProp') and s2.has_key('objOfProp'):
+        if not s1['objOfProp'] == s2['objOfProp']: return True
+     return False
 
 
 def __add_lexical_information__(graph,senses,renaming):
@@ -349,7 +353,6 @@ def __construct_reference_chain__(sense,signature):
                    if p['name'] == r:
                       if is_first and not chain['subjOfProp'] in visited_subjs: args.append(p['argumentTypes'][0])
                       if is_last  and not chain['objOfProp']  in visited_objs:  args.append(p['argumentTypes'][-1])
-                      break
         visited_subjs.append(chain['subjOfProp'])
         visited_objs.append(chain['objOfProp'])
     if  ref.startswith('_'): ref = ref[1:]
