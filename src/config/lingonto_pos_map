@@ -1,6 +1,6 @@
-noun        http://www.lexinfo.net/ontology/2.0/lexinfo#noun        http://www.isocat.org/datcat/DC-1333
-noun        http://www.lexinfo.net/ontology/2.0/lexinfo#commonNoun  http://www.isocat.org/datcat/DC-1256
-properNoun  http://www.lexinfo.net/ontology/2.0/lexinfo#properNoun  http://www.isocat.org/datcat/DC-1371
-verb        http://www.lexinfo.net/ontology/2.0/lexinfo#verb        http://www.isocat.org/datcat/DC-1424
-adjective   http://www.lexinfo.net/ontology/2.0/lexinfo#adjective   http://www.isocat.org/datcat/DC-1230
-preposition http://www.lexinfo.net/ontology/2.0/lexinfo#preposition http://www.isocat.org/datcat/DC-1366
+noun        http://www.lexinfo.net/ontology/2.0/lexinfo#noun        http://www.isocat.org/datcat/DC-1333 http://lemon-model.net/lexica/uby/category#noun
+noun        http://www.lexinfo.net/ontology/2.0/lexinfo#commonNoun  http://www.isocat.org/datcat/DC-1256 http://lemon-model.net/lexica/uby/category#noun
+properNoun  http://www.lexinfo.net/ontology/2.0/lexinfo#properNoun  http://www.isocat.org/datcat/DC-1371 http://lemon-model.net/lexica/uby/category#nounProper
+verb        http://www.lexinfo.net/ontology/2.0/lexinfo#verb        http://www.isocat.org/datcat/DC-1424 http://lemon-model.net/lexica/uby/category#verb
+adjective   http://www.lexinfo.net/ontology/2.0/lexinfo#adjective   http://www.isocat.org/datcat/DC-1230 http://lemon-model.net/lexica/uby/category#adjective
+preposition http://www.lexinfo.net/ontology/2.0/lexinfo#preposition http://www.isocat.org/datcat/DC-1366 http://lemon-model.net/lexica/uby/category#preposition

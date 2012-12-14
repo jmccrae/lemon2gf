@@ -1,28 +1,28 @@
-pos http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech http://www.isocat.org/datcat/DC-1345
+pos http://www.lexinfo.net/ontology/2.0/lexinfo#partOfSpeech http://www.isocat.org/datcat/DC-1345 http://lemon-model.net/lexica/uby/category#partOfSpeech
 
-subject              http://www.lexinfo.net/ontology/2.0/lexinfo#subject              http://www.isocat.org/datcat/DC-2261
-directObject         http://www.lexinfo.net/ontology/2.0/lexinfo#directObject         http://www.isocat.org/datcat/DC-2263
-indirectObject       http://www.lexinfo.net/ontology/2.0/lexinfo#indirectObject       http://www.isocat.org/datcat/DC-1310
-prepositionalObject  http://www.lexinfo.net/ontology/2.0/lexinfo#prepositionalObject  http://www.isocat.org/datcat/DC-4638
+subject              http://www.lexinfo.net/ontology/2.0/lexinfo#subject              http://www.isocat.org/datcat/DC-2261 http://lemon-model.net/lexica/uby/category#subject
+directObject         http://www.lexinfo.net/ontology/2.0/lexinfo#directObject         http://www.isocat.org/datcat/DC-2263 http://lemon-model.net/lexica/uby/category#directObject
+indirectObject       http://www.lexinfo.net/ontology/2.0/lexinfo#indirectObject       http://www.isocat.org/datcat/DC-1310 
+prepositionalObject  http://www.lexinfo.net/ontology/2.0/lexinfo#prepositionalObject  http://www.isocat.org/datcat/DC-4638 http://lemon-model.net/lexica/uby/category#complement
 prepositionalAdjunct http://www.lexinfo.net/ontology/2.0/lexinfo#prepositionalAdjunct
 possessiveAdjunct    http://www.lexinfo.net/ontology/2.0/lexinfo#possessiveAdjunct
 
-number   http://www.lexinfo.net/ontology/2.0/lexinfo#number   http://www.isocat.org/datcat/DC-1298
-singular http://www.lexinfo.net/ontology/2.0/lexinfo#singular http://www.isocat.org/datcat/DC-1387
-plural   http://www.lexinfo.net/ontology/2.0/lexinfo#plural   http://www.isocat.org/datcat/DC-1354
+number   http://www.lexinfo.net/ontology/2.0/lexinfo#number   http://www.isocat.org/datcat/DC-1298 http://lemon-model.net/lexica/uby/category#grammaticalNumber
+singular http://www.lexinfo.net/ontology/2.0/lexinfo#singular http://www.isocat.org/datcat/DC-1387 http://lemon-model.net/lexica/uby/category#singular
+plural   http://www.lexinfo.net/ontology/2.0/lexinfo#plural   http://www.isocat.org/datcat/DC-1354 http://lemon-model.net/lexica/uby/category#plural
 
-person       http://www.lexinfo.net/ontology/2.0/lexinfo#person        http://www.isocat.org/datcat/DC-1328
-firstPerson  http://www.lexinfo.net/ontology/2.0/lexinfo#firstPerson   http://www.isocat.org/datcat/DC-1288
-secondPerson http://www.lexinfo.net/ontology/2.0/lexinfo#secondPerson  http://www.isocat.org/datcat/DC-1384
-thirdPerson  http://www.lexinfo.net/ontology/2.0/lexinfo#thirdPerson   http://www.isocat.org/datcat/DC-1402
+person       http://www.lexinfo.net/ontology/2.0/lexinfo#person        http://www.isocat.org/datcat/DC-1328 http://lemon-model.net/lexica/uby/category#person
+firstPerson  http://www.lexinfo.net/ontology/2.0/lexinfo#firstPerson   http://www.isocat.org/datcat/DC-1288 http://lemon-model.net/lexica/uby/category#first
+secondPerson http://www.lexinfo.net/ontology/2.0/lexinfo#secondPerson  http://www.isocat.org/datcat/DC-1384 http://lemon-model.net/lexica/uby/category#second
+thirdPerson  http://www.lexinfo.net/ontology/2.0/lexinfo#thirdPerson   http://www.isocat.org/datcat/DC-1402 http://lemon-model.net/lexica/uby/category#third
 
-tense   http://www.lexinfo.net/ontology/2.0/lexinfo#tense   http://www.isocat.org/datcat/DC-1286
-present http://www.lexinfo.net/ontology/2.0/lexinfo#present http://www.isocat.org/datcat/DC-1367
-past    http://www.lexinfo.net/ontology/2.0/lexinfo#past    http://www.isocat.org/datcat/DC-1347
+tense   http://www.lexinfo.net/ontology/2.0/lexinfo#tense   http://www.isocat.org/datcat/DC-1286 http://lemon-model.net/lexica/uby/category#tense
+present http://www.lexinfo.net/ontology/2.0/lexinfo#present http://www.isocat.org/datcat/DC-1367 http://lemon-model.net/lexica/uby/category#present
+past    http://www.lexinfo.net/ontology/2.0/lexinfo#past    http://www.isocat.org/datcat/DC-1347 http://lemon-model.net/lexica/uby/category#past
 
-verbFormMood http://www.lexinfo.net/ontology/2.0/lexinfo#verbFormMood http://www.isocat.org/datcat/DC-1427
-participle   http://www.lexinfo.net/ontology/2.0/lexinfo#participle   http://www.isocat.org/datcat/DC-1341
+verbFormMood http://www.lexinfo.net/ontology/2.0/lexinfo#verbFormMood http://www.isocat.org/datcat/DC-1427 http://lemon-model.net/lexica/uby/category#verbFormMood
+participle   http://www.lexinfo.net/ontology/2.0/lexinfo#participle   http://www.isocat.org/datcat/DC-1341 http://lemon-model.net/lexica/uby/category#participle
 aspect       http://www.lexinfo.net/ontology/2.0/lexinfo#aspect       http://www.isocat.org/datcat/DC-1242
 perfective   http://www.lexinfo.net/ontology/2.0/lexinfo#perfective   http://www.isocat.org/datcat/DC-1352
-gerundive    http://www.lexinfo.net/ontology/2.0/lexinfo#gerundive    http://www.isocat.org/datcat/DC-2243
+gerundive    http://www.lexinfo.net/ontology/2.0/lexinfo#gerundive    http://www.isocat.org/datcat/DC-2243 
 
