@@ -9,7 +9,8 @@ from utils import print_signature
 
 
 gf_libs   = dict()
-signature = dict( predefined   = [ dict(name='owlThing',   lincat='CN'),
+signature = dict( name = 'Domain',
+                   predefined   = [ dict(name='owlThing',   lincat='CN'),
                                    dict(name='xsdString',  lincat='CN'),
                                    dict(name='xsdInteger', lincat='CN'),
                                    dict(name='xsdDecimal', lincat='CN'),
